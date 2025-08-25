@@ -1,0 +1,22 @@
+.container {
+  height: 85%;
+}
+
+.plan-item {
+  display: flex;
+  align-items: center;
+  text-align: left;
+}
+
+.divider {
+  border: none;
+  /* 移除默认边框 */
+  height: 1rpx;
+  /* 设置线条的高度 */
+  background-color: #ccc;
+  /* 设置线条的颜色 */
+  margin-top: 20rpx;
+  margin-bottom: 10rpx;
+  margin-right: 20rpx;
+  /* 上下外边距 */
+}

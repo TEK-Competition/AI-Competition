@@ -1,0 +1,32 @@
+<t-message id="t-message" />
+<t-navbar title="创建行程" left-arrow bind:go-back="handleBack" />
+<view class="container">
+
+  <form bind:submit="formSubmit">
+    <t-input name="placeOfDeparture" label="出发地" placeholder="请输入出发地" />
+    <t-input name="destination" label="目的地" placeholder="请输入目的地" />
+    <view>
+      <t-cell title="出发时间" hover note="{{startDateText || ''}}" arrow data-mode="date" bindtap="showStartDate" t-class="panel-item" />
+      <t-date-time-picker auto-close title="选择出发时间" visible="{{startDateVisible}}" mode="date" start="{{startDate}}" end="{{endDate}}" format="YYYY-MM-DD" bindchange="onConfirmStartDate" bindclose="onCloseStartDate" />
+      <t-cell title="结束时间" hover note="{{endDateText || ''}}" arrow data-mode="date" bindtap="showEndDate" t-class="panel-item" />
+      <t-date-time-picker auto-close title="选择结束时间" visible="{{endDateVisible}}" mode="date" start="{{startDate}}" end="{{endDate}}" format="YYYY-MM-DD" bindchange="onConfirmEndDate" bindclose="onCloseEndDate" />
+    </view>
+    <t-input name="peopleAmount" type="number" label="出行人数" placeholder="请输入出行人数" />
+    <t-input name="budgetRange" label="预算范围" placeholder="请输入预算范围" />
+    <view class="preference-view">
+      <view>
+        偏好
+      </view>
+      <view class="preference-item-container">
+        <view wx:for="{{defaultPreferenceList}}" wx:key="index" class="preference-item">
+          <t-check-tag bind:change="preferenceChange" data-value="{{item}}" size="large" variant="light" content="{{ [item] }}" />
+        </view>
+      </view>
+    </view>
+    <t-textarea style="height: 350rpx;" name="additionalInstructions" label="其他要求" placeholder="请输入其他要求" maxcharacter="200" disableDefaultPadding="{{true}}" indicator />
+    <view class="submit-btu">
+      <t-button type="submit" theme="primary" size="small" block>提交</t-button>
+    </view>
+  </form>
+
+</view>

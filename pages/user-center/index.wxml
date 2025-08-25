@@ -1,0 +1,37 @@
+<t-message id="t-message" />
+<view class="container">
+  <view>
+    <t-navbar title="个人中心" left-arrow bind:go-back="handleBack" />
+    <view class="header">
+      <view style="width: 30%;">
+        <t-avatar shape="round" size="150rpx" image="{{avatar}}" />
+      </view>
+      <view style="width: 80%;">
+      <view style=" display: flex;">
+        <span style="font-weight: bold; font-size: 45rpx;">{{username}}</span>
+        <t-icon style="padding-left: 15rpx; color: blue;" name="gender-male" />
+      </view>
+        <span style="color: gray;">地区：广东省广州市</span>
+        <span style="color: gray;">走在疯中今天阳光突然好温柔~</span>
+      </view>
+    </view>
+    <t-divider />
+    <view>
+      <t-cell-group theme="card">
+        <t-cell title="我的机票" leftIcon="flight-takeoff" hover arrow />
+        <t-cell title="我的酒店" leftIcon="sailing-hotel" hover arrow />
+        <t-cell title="我的游记" leftIcon="article" hover arrow />
+        <t-cell title="旅行轨迹" leftIcon="map-route-planning" hover arrow />
+      </t-cell-group>
+    </view>
+    <view style="background-color: #F3F4F6; width: 100%; height: 20rpx;" />
+    <t-cell title="修改密码" hover arrow leftIcon="setting-1" bordered="{{true}}" bind:click="toUpdatePassword" />
+
+    <view style="padding-top: 30rpx; width: 100%; display: flex; justify-content: center; ">
+      <view style="width: 500rpx;">
+        <t-button theme="primary" size="small" bind:tap="logout" block>退出登录</t-button>
+      </view>
+    </view>
+
+  </view>
+</view>

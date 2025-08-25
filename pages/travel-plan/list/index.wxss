@@ -1,0 +1,41 @@
+.container{
+  height: 78%;
+}
+.no-data-tips{
+  padding-top: 30%;
+  text-align: center;
+  font-size: 45rpx;
+  color: grey;
+}
+.travel-plan-list {
+  padding: 20rpx; 
+}
+
+.travel-plan-item {
+  /* 设置背景颜色 */
+  background-color: rgb(212, 234, 241);
+  /* 设置圆角的半径 */
+  border-radius: 40rpx;
+  /* 所有四个角都应用相同的圆角半径 */
+  /* 可选：添加一些内边距 */
+  padding: 20rpx;
+}
+
+.travel-plan-title {
+  font-size: 40rpx;
+  font-weight: bold;
+}
+
+.travel-plan-date {
+  padding-top: 10rpx;
+  color: grey;
+}
+
+.travel-plan-preference{
+  padding-top: 10rpx;
+}
+
+.travel-plan-status{
+  padding-top: 10rpx; 
+  font-size: 25rpx;
+}

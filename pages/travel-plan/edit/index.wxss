@@ -1,0 +1,24 @@
+.container {
+  height: 100%;
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+}
+
+.submit-btu {
+  padding-top: 20rpx;
+}
+
+.preference-view {
+  padding: 28rpx;
+}
+
+.preference-item-container {
+  padding-top: 20rpx;
+  display: flex; 
+  flex-wrap: wrap;
+}
+
+.preference-item {
+  padding-right: 10rpx;
+  padding-bottom: 10rpx;
+}

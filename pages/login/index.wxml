@@ -1,0 +1,26 @@
+<t-message id="t-message" />
+<view class="container">
+  <view style="padding-top: 10%;">
+    <t-navbar title="欢迎登录">
+      <view slot="left">
+        <t-icon size="40rpx" bind:tap="onGoHome" aria-role="button" aria-label="首页" name="home" />
+      </view>
+    </t-navbar>
+    <form bind:submit="formSubmit" style="padding-top: 30rpx;">
+      <t-input name="account" bind:change="onAccountInput" class="custom-class" label="账号" status="{{!hasAccount ? 'error' : 'default'}}" tips="{{!hasAccount ? '请输入账号' : ''}}" placeholder="请输入账号" type="text" clearable="{{ true }}" />
+      <t-input name="password" bind:change="onPasswordInput" class="custom-class" label="密码" status="{{!hasPassword ? 'error' : 'default'}}" tips="{{!hasPassword ? '请输入密码' : ''}}" placeholder="请输入密码" type="{{passwordInputType}}" clearable="{{ true }}" suffixIcon="{{ { name: passwordIconName } }}" bind:click="onSuffixIconClick" />
+      <view style="padding-top: 30rpx; width: 100%; display: flex; justify-content: center; ">
+        <view style="width: 500rpx;">
+          <t-button type="submit" theme="primary" size="small" block>登录</t-button>
+        </view>
+      </view>
+    </form>
+    <view bind:tap="goToRegister" style="display: flex; justify-content: flex-end; padding-top: 30rpx; color: blue; margin-right: 20rpx;">
+      前往注册 >>
+    </view>
+    <view style="display: flex; justify-content: flex-end; padding-top: 30rpx; color: red; margin-right: 20rpx;">
+      忘记密码 >>
+    </view>
+  </view>
+
+</view>

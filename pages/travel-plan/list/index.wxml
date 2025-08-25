@@ -1,0 +1,32 @@
+<t-message id="t-message" />
+<t-navbar title="我的行程" />
+<scroll-view class="container" scroll-y="true" refresher-enabled refresher-triggered="{{refresherTriggered}}" bindrefresherrefresh="onRefresherRefresh">
+  <t-search style="padding-left: 30rpx; padding-right: 30rpx; padding-top: 20rpx;" bind:submit="searchTravelPlan" bind:clear="clearSearch" placeholder="搜索目的地" />
+  <view class="no-data-tips" wx:if="{{travelPlanList.length == 0}}">
+    暂无数据...
+  </view>
+  <view class="travel-plan-list" wx:for="{{travelPlanList}}" wx:key="index">
+    <view class="travel-plan-item" bind:tap="toDetailPage" data-id="{{item.id}}" data-status="{{item.status}}">
+      <view class="travel-plan-left">
+        <view class="travel-plan-title">
+          {{item.placeOfDeparture}} - {{item.destination}}{{item.totalDays}}日游
+        </view>
+        <view class="travel-plan-date">
+          {{item.startDate}} 至 {{item.endDate}}
+        </view>
+        <view class="travel-plan-preference">
+          <t-tag variant="outline" icon="discount" wx:for="{{item.preference}}" wx:key="index"> {{item}} </t-tag>
+        </view>
+        <view class="travel-plan-status">
+          <p wx:if="{{item.status == 'IN_PROGRESS'}}" style="color: orange;">正在处理...</p>
+          <p wx:if="{{item.status == 'SUCCESS'}}" style="color: green;">规划成功!!</p>
+          <p wx:if="{{item.status == 'FAIL'}}" style="color: red;">规划失败，点击重试~</p>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>
+
+<t-tab-bar t-class="t-tab-bar" value="{{tabBarValue}}" bind:change="onTabBarChange" theme="tag" split="{{false}}">
+  <t-tab-bar-item wx:for="{{tabBarList}}" wx:key="index" value="{{item.value}}" icon="{{item.icon}}"></t-tab-bar-item>
+</t-tab-bar>

@@ -1,0 +1,15 @@
+<t-message id="t-message" />
+<view class="container">
+  <view style="padding-top: 20%;">
+    <t-navbar title="AI旅行助手" />
+    <view style="padding-top: 30rpx; width: 100%; display: flex; justify-content: center; ">
+      <view style="width: 300rpx;">
+        <t-button type="submit" theme="primary" size="small" block bind:tap="goToLogin">前往登录</t-button>
+      </view>
+    </view>
+    <text style="padding-top: 30rpx; padding-left: 10rpx;">
+      <!-- 这行代码不能使用回车！ -->
+      <span style="color: #FA3534;">提示：</span>请先登录“<span style="color: #007AFF;">AI旅行小助手</span>”，我们会同步您的数据！
+    </text>
+  </view>
+</view>

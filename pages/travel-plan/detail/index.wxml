@@ -1,0 +1,44 @@
+<t-message id="t-message" />
+<t-navbar title="查看行程" left-arrow bind:go-back="handleBack" />
+
+<scroll-view class="container" scroll-y="true">
+
+  <t-steps layout="vertical" theme="dot" current="{{currentStep}}" bind:change="onStepChange">
+    <t-step-item wx:for="{{travelPlanDetail.travelPlanResultList}}" wx:key="index" title="{{item.day}}" content="{{item.weather}}">
+
+      <view slot="extra" style="padding-right: 15rpx;">
+        <view class="plan-item">
+          <t-icon name="location" />
+          <span style="font-weight: bold;">{{item.city}} - {{item.scenicSpotName}}</span>
+        </view>
+        <view style="text-align: left; padding-top: 10rpx;">
+          <span> | <span wx:for="{{item.vehicle}}" wx:key="index">{{item}} |</span> </span>
+        </view>
+        <view style="text-align: left; font-size: 25rpx; color: grey; padding-top: 10rpx;">
+          <p>{{item.trafficInformation}}</p>
+        </view>
+        <view class="divider" />
+        <view style="text-align: left; padding-top: 10rpx;">
+          <p style="font-size: 25rpx; color: blue;">推荐理由：</p>
+          <p>{{item.recommendReason}}</p>
+        </view>
+        <view style="text-align: left; padding-top: 10rpx;" wx:if="{{!!item.localCuisine}}">
+          <p style=" font-size: 25rpx; color: orange;">美食：</p>
+          <p>{{item.localCuisine}}</p>
+        </view>
+        <view class="divider" />
+        <view style="text-align: left; padding-top: 10rpx;">
+          <p style="font-size: 25rpx; color: green;">活动：</p>
+          <p> {{item.activityArrangement}}</p>
+        </view>
+        <view class="plan-item" style="font-size: 25rpx; padding-top: 10rpx;">
+          <t-icon color="red" name="error-circle" />
+          <p style="padding-left: 10rpx;">{{item.precautions}}</p>
+        </view>
+        <view class="divider" />
+      </view>
+
+    </t-step-item>
+  </t-steps>
+
+</scroll-view>
