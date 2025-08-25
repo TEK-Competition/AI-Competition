@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TekSystems 数据安全智能问答</title>
+  <style>
+    /* 全局样式 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: #f7f7f7;
+      color: #333;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* 标题：居中，页面上1/3位置 */
+    .header {
+      text-align: center;
+      margin-top: 15vh; /* 大约页面上方1/3处 */
+      margin-bottom: 30px;
+    }
+
+    .header h1 {
+      font-size: 2.2rem;
+      color: #1a1a1a;
+      font-weight: 600;
+    }
+
+    /* AI 回复区域：居中，宽50%，高约1/5页面 */
+    .ai-reply-container {
+      width: 50%;
+      max-width: 600px;
+      min-height: 20vh; /* 大约1/5页面高度，可根据需要调整 */
+      margin: 0 auto 20px auto;
+      background: #ffffff;
+      border: 1px solid #e1e5e9;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .ai-reply {
+      flex: 1;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #1a1a1a;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      max-height: 20vh;     /* limit height inside container */
+      overflow-y: auto; 
+    }
+    /* 用户输入区域：居中，与AI回复框对齐，高度约1/20页面 */
+    .user-input-container {
+      width: 50%;
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center; 
+      gap: 10px;
+    }
+    /* 输入框与深度思考按钮的容器 */
+   .input-container {
+      position: relative;       /* 使子元素可以绝对定位 */
+      display: inline-block;    /* 让容器大小贴合 input */
+      width: 100%;              /* 占满父容器宽度 */
+      align-items: flex-start;
+    }
+
+    /* 原有的用户输入框样式，现在要配合容器 */
+    .user-input {
+      width: 100%;
+      padding: 10px 10px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 12px;
+      outline: none;
+      transition: border-color 0.2s;
+      box-sizing: border-box;
+      min-height: 80px;   /* allows multiple lines */
+      line-height: 1.4;
+      resize: none;       /* optional: disable manual resizing */
+    }
+
+    /* 深度思考切换按钮（放在 input 左下角，视觉上像是内置的） */
+    .deep-think-toggle {
+      position: absolute;
+      left: 5px;                /* 距离输入框左边缘的距离，可调整，比如 12px 更常见 */
+      bottom: 20%;              /* 垂直方向基准位置 */
+      transform: translateY(50%); /* 垂直居中 */
+      background: #f8f9fa;         /* 背景透明（可改成浅色背景，如 #f8f9fa） */
+      border: 1px solid #ccc;   /* ✅ 添加 1px 实线边框，推荐灰色 */
+      border-radius: 12px;      /* ✅ 圆角矩形，推荐 12px~16px，不要 50%（那是圆形） */
+      font-size: 0.8rem;        /* 文字大小 */
+      cursor: pointer;
+      color: #999;              /* 默认文字颜色，比如深灰色 */
+      transition: all 0.2s ease; /* 推荐：所有属性过渡更自然，包括边框/背景/颜色 */
+      z-index: 10;
+      padding: 4px 8px;         /* 左右留点空间，避免文字贴边，上下可适当调整 */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: auto;              /* ✅ 推荐：不要固定 100px，让宽度根据内容自适应 */
+      height: 24px;             /* 你可以保持固定高度，或改成 min-height */
+    }
+
+    /* 深度思考 按钮被激活（点亮）时的样式 */
+    .deep-think-toggle.active {
+      color: #28a745;           /* 深度模式激活后变绿色 */
+      background-color: rgba(40, 167, 69, 0.1); /* 可选：轻微背景色 */
+    }
+    
+    .user-input:focus {
+      border-color: #007bff;
+    }
+
+    .send-button {
+      height: 44px;              /* ✅ 固定高度，独立于 input */
+      padding: 0 12px;           /* ✅ 左右留 24px 空间，上下不留 padding（由 height 控制） */
+      font-size: 1rem;           /* 字体大小保持不变 */
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 12px;       /* 圆角保持不变 */
+      cursor: pointer;
+      transition: background-color 0.2s;
+      display: inline-flex;      /* 推荐：让按钮内容水平居中（可选） */
+      align-items: center;       /* 垂直居中文字 */
+      justify-content: center;   /* 水平居中文字 */
+      white-space: nowrap;      /* ✅ 禁止文字换行 */
+      overflow: hidden;         /* （可选）超出部分隐藏（一般配合 nowrap 使用） */
+      text-overflow: ellipsis;  /* （可选）如果实在放不下，显示省略号 (...) */
+    }
+
+    .send-button:hover {
+      background-color: #0056b3;
+    }
+
+    .send-button:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 标题：页面上部1/3处居中 -->
+  <div class="header">
+    <h1>TekSystems 数据安全智能问答</h1>
+  </div>
+
+  <!-- AI 回复框：居中，宽50%，高约1/5 -->
+  <div class="ai-reply-container">
+    <div id="aiReply" class="ai-reply">
+      您好！我是AI助手，有什么可以帮助您的吗？
+    </div>
+  </div>
+   
+  <!-- 用户输入框：居中，与上方对齐，高度约1/20 -->
+  <div class="user-input-container">
+    <div class="input-container">
+      <textarea
+        id="userInput"
+        class="user-input"
+        placeholder="请输入您的问题..."
+        autocomplete="off"
+      ></textarea>
+      <button
+      id="deepThinkToggle"
+      class="deep-think-toggle"
+      >
+      深度思考
+      </button>
+    </div>
+    <button id="sendButton" class="send-button">发送</button>
+  </div>
+
+  <script>
+    const userInput = document.getElementById('userInput');
+    const sendButton = document.getElementById('sendButton');
+    const aiReplyDiv = document.getElementById('aiReply');
+    const deepThinkToggle = document.getElementById('deepThinkToggle');
+    let isDeepThinking = false; // 记录是否启用了深度思考
+
+    // 点击 🧠 按钮，切换深度思考模式
+    deepThinkToggle.addEventListener('click', function () {
+      isDeepThinking = !isDeepThinking;
+
+      if (isDeepThinking) {
+        deepThinkToggle.classList.add('active'); // 变绿色
+      } else {
+        deepThinkToggle.classList.remove('active'); // 恢复默认
+      }
+    });
+    async function sendMessage() {
+      const message = userInput.value.trim();
+      if (!message) return;
+
+      // 显示“正在思考...”
+      aiReplyDiv.textContent = '正在思考...';
+      sendButton.disabled = true;
+
+      try {
+        const response = await fetch('/chat', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ 
+            message: message,
+            mode: isDeepThinking ? 'deep':'normal'}),
+        });
+
+        if (!response.ok) {
+          throw new Error('网络请求失败');
+        }
+
+        const data = await response.json();
+        aiReplyDiv.textContent = data.reply || '抱歉，我没有收到回复。';
+      } catch (error) {
+        console.error('Error:', error);
+        aiReplyDiv.textContent = '出错了，请稍后再试。';
+      } finally {
+        userInput.value = '';
+        sendButton.disabled = false;
+      }
+    }
+
+    // 绑定回车键和点击发送
+    sendButton.addEventListener('click', sendMessage);
+    userInput.addEventListener('keypress', function (e) {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault(); // prevent newline
+        sendMessage();
+      }
+    });
+  </script>
+
+</body>
+</html>
