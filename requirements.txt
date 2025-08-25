@@ -1,0 +1,6 @@
+openai==1.93.0
+PyYAML==6.0.2
+streamlit==1.46.1
+streamlit-authenticator==0.4.2
+pymongo
+pandas
