@@ -1,0 +1,50 @@
+server:
+  port: 2333
+
+spring:
+  application:
+  name: supreme-travel-plan-ai
+  profiles:
+    active: local
+  mvc:
+    # 强制抛出 NoHandlerFoundException（必须开启）
+    throw-exception-if-no-handler-found: true
+  web:
+    resources:
+      # 禁用静态资源自动映射（否则 Spring Boot 会优先尝试映射静态资源路径，不会抛出异常）
+      add-mappings: false
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/travel_plan_db?allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: xxxxx
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+      password:
+
+aliyun:
+  bailian:
+    apiKey: xxxxxxxxxxx
+    appId: xxxxxxxxxxx
+
+wechat:
+  appId: xxxxxxxxxx
+  appSecret: xxxxxxxxxxx
+
+expire-time:
+  # 单位：分钟
+  verify-code: 2
+  jwt-token: 480
+
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**/*Mapper.xml
+  type-aliases-package: com.laijiaxiang.supreme.model.entity
+  type-enums-package: com.laijiaxiang.supreme.model.enums
+  type-handlers-package: com.laijiaxiang.supreme.handler
+  executor-type: REUSE
+  configuration:
+    auto-mapping-behavior: full
+    auto-mapping-unknown-column-behavior: warning
+    local-cache-scope: statement
+    default-enum-type-handler: org.apache.ibatis.type.EnumOrdinalTypeHandler
