@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>AI 绩效助手</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #ffffff;
+      --fg: #0f172a;
+      --muted: #475569;
+      --border: #e2e8f0;
+      --primary: #4f46e5;
+      --avatar-user: #64748b;
+      --bubble-assist-bg: #eef2ff;
+      --bubble-user-bg: #f1f5f9;
+      --overlay: #00000080;
+      --spin-track: rgba(15, 23, 42, .15);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0b0f19;
+        --fg: #e5e7eb;
+        --muted: #94a3b8;
+        --border: #1f2937;
+        --bubble-assist-bg: color-mix(in oklab, #4f46e5 18%, transparent);
+        --bubble-user-bg: #0f172a;
+        --spin-track: rgba(229, 231, 235, .15);
+      }
+    }
+
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 0; background: var(--bg); color: var(--fg); }
+    header { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-bottom: 1px solid var(--border); background: var(--bg); }
+    h2 { margin: 0; font-size: 18px; color: var(--fg); }
+    .controls { display: none; gap: 12px; flex-wrap: wrap; align-items: center; }
+    .debug .controls { display: flex; }
+    .field { display: flex; flex-direction: column; min-width: 220px; }
+    label { font-size: 12px; color: var(--muted); margin-bottom: 4px; }
+    input, select, textarea, button {
+      padding: 8px 10px; font-size: 14px;
+      background: var(--bg); color: var(--fg);
+      border: 1px solid var(--border); border-radius: 8px;
+    }
+    input::placeholder, textarea::placeholder { color: color-mix(in oklab, var(--muted) 60%, transparent); }
+    button { background: var(--primary); color: #fff; border-color: transparent; cursor: pointer; }
+    button:disabled { opacity: .6; cursor: not-allowed; }
+    button:hover:not(:disabled) { filter: brightness(1.05); }
+    button:active:not(:disabled) { filter: brightness(0.97); }
+
+    main { display: grid; grid-template-rows: 1fr auto; height: calc(100vh - 56px); }
+    #chat { padding: 16px; overflow: auto; background: var(--bg); }
+    .msg { display: grid; grid-template-columns: 36px 1fr; gap: 10px; margin-bottom: 14px; }
+    .avatar { width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; font-size: 13px; background: var(--primary); color: #fff; }
+    .avatar.user { background: var(--avatar-user); }
+    .bubble { padding: 10px 12px; border-radius: 12px; border: 1px solid var(--border); color: var(--fg); }
+    .assistant .bubble { background: var(--bubble-assist-bg); }
+    .user .bubble { background: var(--bubble-user-bg); }
+    .footer { display: grid; grid-template-columns: 1fr auto; gap: 12px; padding: 12px 16px; border-top: 1px solid var(--border); background: var(--bg); }
+    textarea { resize: vertical; min-height: 60px; }
+    .muted { font-size: 12px; color: var(--muted); }
+
+    /* Loading overlay */
+    .loading {
+      position: fixed; inset: 0;
+      display: none; align-items: center; justify-content: center;
+      background: color-mix(in oklab, var(--bg) 40%, var(--overlay));
+      backdrop-filter: blur(1px);
+      z-index: 9999;
+    }
+    .loading.show { display: flex; }
+    .loading .box {
+      display: flex; align-items: center; gap: 10px;
+      background: var(--bg);
+      color: var(--fg);
+      border: 1px solid var(--border);
+      padding: 10px 14px; border-radius: 10px;
+      box-shadow: 0 6px 24px rgba(0,0,0,.08);
+    }
+    .spinner {
+      width: 22px; height: 22px;
+      border: 3px solid var(--spin-track);
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+  <script>
+    (function(){
+      const p = new URLSearchParams(location.search);
+      const debug = (p.get('debug') === '1' || p.get('debug') === 'true');
+      if (debug) document.documentElement.classList.add('debug');
+    })();
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+  <header>
+    <h2>AI 绩效助手</h2>
+    <div style="display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
+      <div class="field" style="min-width:180px">
+        <label for="name">员工姓名</label>
+        <input id="name" placeholder="例如：小白" />
+      </div>
+      <div class="controls">
+        <div class="field">
+          <label for="apiBase">API Base</label>
+          <input id="apiBase" value="http://localhost:8000" />
+        </div>
+        <div class="field" style="min-width:160px">
+          <label for="model">Model</label>
+          <input id="model" value="llama3.1" />
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div id="chat" aria-live="polite">
+      <div class="msg assistant">
+        <div class="avatar">AI</div>
+        <div class="bubble">
+          <div class="muted">欢迎！请输入员工姓名与问题，我会调取绩效表并给出结构化建议。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <textarea id="prompt" placeholder="例如：你好，能否根据以上绩效表给出优势、待优化能力、不足和改进建议？"></textarea>
+      <div style="display:flex; gap:8px; align-items:center;">
+        <button id="sendBtn">发送</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Loading overlay -->
+  <div id="loading" class="loading" aria-live="polite" aria-busy="true">
+    <div class="box">
+      <div class="spinner" aria-hidden="true"></div>
+      <div class="text">思考中…</div>
+    </div>
+  </div>
+
+  <script defer src="./app.js"></script>
+</body>
+</html>
