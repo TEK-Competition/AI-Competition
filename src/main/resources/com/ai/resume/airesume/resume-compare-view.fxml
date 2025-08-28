@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import org.kordamp.bootstrapfx.scene.layout.Panel?>
+
+<StackPane fx:id="rootPane" xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.ai.resume.airesume.controller.ResumeCompareController"
+            prefHeight="600.0" prefWidth="900.0">
+    <BorderPane styleClass="panel">
+        <top>
+            <VBox spacing="10">
+                <padding>
+                    <Insets top="10" right="10" bottom="10" left="10"/>
+                </padding>
+                <Label text="简历对比" styleClass="h3"/>
+            </VBox>
+        </top>
+        
+        <center>
+            <VBox spacing="10">
+                <padding>
+                    <Insets top="10" right="10" bottom="10" left="10"/>
+                </padding>
+                
+                <!-- 简历详情区域 - 移到顶部 -->
+                <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS">
+                    <GridPane fx:id="resumeGrid" hgap="10" vgap="10">
+                        <padding>
+                            <Insets top="10" right="10" bottom="10" left="10"/>
+                        </padding>
+                    </GridPane>
+                </ScrollPane>
+                
+                <!-- AI分析结果区域 - 移到底部 -->
+                <VBox spacing="5" VBox.vgrow="NEVER">
+                    <Label text="AI简历对比分析" styleClass="h4"/>
+                    <TextArea fx:id="aiAnalysisArea" 
+                              wrapText="true" 
+                              editable="false" 
+                              VBox.vgrow="NEVER" 
+                              minHeight="100"
+                              maxHeight="Infinity"
+                              prefHeight="150"/>
+                    <HBox spacing="10" alignment="CENTER_RIGHT">
+                        <Button fx:id="analyzeButton" text="开始分析" onAction="#handleAnalyze" styleClass="btn,btn-primary"/>
+                    </HBox>
+                </VBox>
+            </VBox>
+        </center>
+        
+        <bottom>
+            <HBox spacing="10" alignment="CENTER_RIGHT">
+                <padding>
+                    <Insets top="10" right="10" bottom="10" left="10"/>
+                </padding>
+                <Button text="关闭" onAction="#handleClose" styleClass="btn,btn-secondary"/>
+            </HBox>
+        </bottom>
+    </BorderPane>
+</StackPane> 

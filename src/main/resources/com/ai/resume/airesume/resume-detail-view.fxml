@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import org.kordamp.bootstrapfx.scene.layout.Panel?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.ai.resume.airesume.controller.ResumeDetailController"
+            prefHeight="600.0" prefWidth="800.0"
+            styleClass="panel">
+    <top>
+        <VBox spacing="10">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+            <Label text="简历详情" styleClass="h3"/>
+        </VBox>
+    </top>
+    
+    <center>
+        <ScrollPane fitToWidth="true">
+            <GridPane hgap="10" vgap="10">
+                <padding>
+                    <Insets top="10" right="10" bottom="10" left="10"/>
+                </padding>
+                
+                <columnConstraints>
+                    <ColumnConstraints hgrow="NEVER" minWidth="100" prefWidth="120"/>
+                    <ColumnConstraints hgrow="ALWAYS"/>
+                </columnConstraints>
+                
+                <!-- 基本信息 -->
+                <Label text="基本信息" styleClass="h4" GridPane.columnSpan="2" GridPane.rowIndex="0"/>
+                
+                <Label text="姓名：" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                <TextField fx:id="nameField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                
+                <Label text="性别：" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                <ComboBox fx:id="genderComboBox" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                
+                <Label text="年龄：" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+                <TextField fx:id="ageField" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                
+                <Label text="最高学历：" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+                <ComboBox fx:id="educationComboBox" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+                
+                <!-- 教育经历 -->
+                <Label text="教育经历" styleClass="h4" GridPane.columnSpan="2" GridPane.rowIndex="5"/>
+                <TableView fx:id="educationTableView" GridPane.columnSpan="2" GridPane.rowIndex="6">
+                    <columns>
+                        <TableColumn fx:id="eduStartDateColumn" text="开始时间"/>
+                        <TableColumn fx:id="eduEndDateColumn" text="结束时间"/>
+                        <TableColumn fx:id="eduSchoolColumn" text="学校"/>
+                        <TableColumn fx:id="eduMajorColumn" text="专业"/>
+                        <TableColumn fx:id="eduDegreeColumn" text="学历"/>
+                    </columns>
+                </TableView>
+                <HBox spacing="10" GridPane.columnSpan="2" GridPane.rowIndex="7">
+                    <Button text="添加教育经历" onAction="#handleAddEducation" styleClass="btn,btn-sm,btn-primary"/>
+                    <Button text="删除教育经历" onAction="#handleRemoveEducation" styleClass="btn,btn-sm,btn-danger"/>
+                </HBox>
+                
+                <!-- 工作经历 -->
+                <Label text="工作经历" styleClass="h4" GridPane.columnSpan="2" GridPane.rowIndex="8"/>
+                <TableView fx:id="workTableView" GridPane.columnSpan="2" GridPane.rowIndex="9">
+                    <columns>
+                        <TableColumn fx:id="workStartDateColumn" text="开始时间"/>
+                        <TableColumn fx:id="workEndDateColumn" text="结束时间"/>
+                        <TableColumn fx:id="workCompanyColumn" text="公司"/>
+                        <TableColumn fx:id="workPositionColumn" text="职位"/>
+                        <TableColumn fx:id="workResponsibilityColumn" text="工作职责"/>
+                    </columns>
+                </TableView>
+                <HBox spacing="10" GridPane.columnSpan="2" GridPane.rowIndex="10">
+                    <Button text="添加工作经历" onAction="#handleAddWork" styleClass="btn,btn-sm,btn-primary"/>
+                    <Button text="删除工作经历" onAction="#handleRemoveWork" styleClass="btn,btn-sm,btn-danger"/>
+                </HBox>
+                
+                <!-- 语言能力 -->
+                <Label text="语言能力" styleClass="h4" GridPane.columnSpan="2" GridPane.rowIndex="11"/>
+                <TableView fx:id="languageTableView" GridPane.columnSpan="2" GridPane.rowIndex="12">
+                    <columns>
+                        <TableColumn fx:id="langNameColumn" text="语种"/>
+                        <TableColumn fx:id="langLevelColumn" text="等级"/>
+                    </columns>
+                </TableView>
+                <HBox spacing="10" GridPane.columnSpan="2" GridPane.rowIndex="13">
+                    <Button text="添加语言能力" onAction="#handleAddLanguage" styleClass="btn,btn-sm,btn-primary"/>
+                    <Button text="删除语言能力" onAction="#handleRemoveLanguage" styleClass="btn,btn-sm,btn-danger"/>
+                </HBox>
+                
+                <!-- 自我评价 -->
+                <Label text="自我评价" styleClass="h4" GridPane.columnSpan="2" GridPane.rowIndex="14"/>
+                <TextArea fx:id="selfEvaluationArea" wrapText="true" GridPane.columnSpan="2" GridPane.rowIndex="15"/>
+                
+                <!-- 面试附件 -->
+                <Label text="面试附件" styleClass="h4" GridPane.columnSpan="2" GridPane.rowIndex="16"/>
+                <TableView fx:id="attachmentTableView" GridPane.columnSpan="2" GridPane.rowIndex="17">
+                    <columns>
+                        <TableColumn fx:id="attachmentPathColumn" text="文件路径"/>
+                    </columns>
+                </TableView>
+                <HBox spacing="10" GridPane.columnSpan="2" GridPane.rowIndex="18">
+                    <Button text="添加附件" onAction="#handleAddAttachment" styleClass="btn,btn-sm,btn-primary"/>
+                    <Button text="删除附件" onAction="#handleRemoveAttachment" styleClass="btn,btn-sm,btn-danger"/>
+                </HBox>
+            </GridPane>
+        </ScrollPane>
+    </center>
+    
+    <bottom>
+        <HBox spacing="10" alignment="CENTER_RIGHT">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+            <Button text="保存" onAction="#handleSave" styleClass="btn,btn-success"/>
+            <Button text="关闭" onAction="#handleClose" styleClass="btn,btn-secondary"/>
+        </HBox>
+    </bottom>
+</BorderPane> 

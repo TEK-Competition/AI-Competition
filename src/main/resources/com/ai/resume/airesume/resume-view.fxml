@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import org.kordamp.bootstrapfx.scene.layout.Panel?>
+
+<StackPane fx:id="rootPane" xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.ai.resume.airesume.controller.ResumeController"
+            prefHeight="600.0" prefWidth="800.0">
+    <BorderPane styleClass="panel">
+        <top>
+            <VBox spacing="10">
+                <padding>
+                    <Insets top="10" right="10" bottom="10" left="10"/>
+                </padding>
+                <Label text="简历分析系统" styleClass="h3"/>
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Button fx:id="uploadButton" text="上传简历" onAction="#handleUpload" styleClass="btn,btn-primary"/>
+                    <Button fx:id="compareButton" text="简历对比" onAction="#handleCompare" styleClass="btn,btn-info"/>
+                </HBox>
+            </VBox>
+        </top>
+        
+        <center>
+            <TableView fx:id="resumeTableView" onMouseClicked="#handleTableClick">
+                <columns>
+                    <TableColumn fx:id="selectColumn" text="选择">
+                        <graphic>
+                            <CheckBox fx:id="selectAllCheckBox" onAction="#handleSelectAll"/>
+                        </graphic>
+                    </TableColumn>
+                    <TableColumn fx:id="nameColumn" text="姓名"/>
+                    <TableColumn fx:id="genderColumn" text="性别"/>
+                    <TableColumn fx:id="ageColumn" text="年龄"/>
+                    <TableColumn fx:id="educationColumn" text="最高学历"/>
+                    <TableColumn fx:id="operationColumn" text="操作"/>
+                </columns>
+            </TableView>
+        </center>
+        
+        <bottom>
+            <HBox spacing="10" alignment="CENTER_RIGHT">
+                <padding>
+                    <Insets top="10" right="10" bottom="10" left="10"/>
+                </padding>
+                <Label fx:id="statusLabel" text="就绪"/>
+            </HBox>
+        </bottom>
+    </BorderPane>
+</StackPane> 

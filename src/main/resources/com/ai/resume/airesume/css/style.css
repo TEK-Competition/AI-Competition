@@ -1,0 +1,172 @@
+/* 自定义样式，补充Bootstrap样式 */
+
+.root {
+    -fx-font-family: "Microsoft YaHei", "Segoe UI", Arial, sans-serif;
+    -fx-font-size: 14px;
+}
+
+.panel {
+    -fx-background-color: #f8f9fa;
+}
+
+.table-view {
+    -fx-border-color: #dee2e6;
+    -fx-border-radius: 4px;
+}
+
+.table-view .column-header {
+    -fx-background-color: #e9ecef;
+    -fx-font-weight: bold;
+}
+
+/* 面试分析表格样式 */
+.interview-analysis-table {
+    -fx-border-color: #dee2e6;
+    -fx-border-radius: 4px;
+    -fx-background-color: white;
+}
+
+.interview-analysis-table .table-row-cell {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent transparent #eaeaea transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-padding: 5 0 5 0;
+}
+
+.interview-analysis-table .table-row-cell:odd {
+    -fx-background-color: #f9f9f9;
+}
+
+.interview-analysis-table .table-row-cell:hover {
+    -fx-background-color: #f5f5f5;
+}
+
+.interview-analysis-table .table-column {
+    -fx-alignment: CENTER-LEFT;
+    -fx-padding: 10 5 10 5;
+}
+
+.interview-analysis-table .table-cell {
+    -fx-alignment: CENTER-LEFT;
+    -fx-padding: 8 5 8 5;
+    -fx-border-color: transparent;
+}
+
+.content-text {
+    -fx-fill: #333333;
+    -fx-font-size: 14px;
+    -fx-line-spacing: 5px;
+}
+
+.time-column {
+    -fx-font-size: 12px;
+    -fx-text-fill: #666666;
+}
+
+.role-column {
+    -fx-font-weight: bold;
+    -fx-text-fill: #007bff;
+}
+
+.list-view {
+    -fx-border-color: #dee2e6;
+    -fx-border-radius: 4px;
+}
+
+.text-area {
+    -fx-border-color: #dee2e6;
+    -fx-border-radius: 4px;
+}
+
+.text-field {
+    -fx-border-color: #dee2e6;
+    -fx-border-radius: 4px;
+}
+
+.combo-box {
+    -fx-border-color: #dee2e6;
+    -fx-border-radius: 4px;
+}
+
+.status-bar {
+    -fx-background-color: #e9ecef;
+    -fx-padding: 5px;
+}
+
+.recording-active {
+    -fx-background-color: #dc3545;
+    -fx-text-fill: white;
+}
+
+/* 表格选中行样式 */
+.table-row-cell:selected {
+    -fx-background-color: #007bff;
+    -fx-text-fill: white;
+}
+
+/* 列表选中项样式 */
+.list-cell:selected {
+    -fx-background-color: #007bff;
+    -fx-text-fill: white;
+}
+
+/* 标签样式 */
+.label.h3 {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+.label.h4 {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-padding: 10 0 5 0;
+}
+
+/* 自定义按钮样式 */
+.btn {
+    -fx-cursor: hand;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 4px;
+    -fx-padding: 8 16 8 16;
+}
+
+.btn-primary {
+    -fx-background-color: #007bff;
+}
+
+.btn-primary:hover {
+    -fx-background-color: #0069d9;
+}
+
+.btn-success {
+    -fx-background-color: #28a745;
+}
+
+.btn-success:hover {
+    -fx-background-color: #218838;
+}
+
+.btn-info {
+    -fx-background-color: #17a2b8;
+}
+
+.btn-info:hover {
+    -fx-background-color: #138496;
+}
+
+.btn-danger {
+    -fx-background-color: #dc3545;
+}
+
+.btn-danger:hover {
+    -fx-background-color: #c82333;
+}
+
+.btn-default {
+    -fx-background-color: #6c757d;
+}
+
+.btn-default:hover {
+    -fx-background-color: #5a6268;
+} 

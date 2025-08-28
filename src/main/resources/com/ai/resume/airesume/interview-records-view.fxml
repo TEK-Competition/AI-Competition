@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import org.kordamp.bootstrapfx.scene.layout.Panel?>
+
+<StackPane fx:id="rootPane" xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.ai.resume.airesume.controller.InterviewRecordsController"
+            prefHeight="500.0" prefWidth="900.0">
+    <BorderPane styleClass="panel">
+        <top>
+            <VBox spacing="10">
+                <padding>
+                    <Insets top="10" right="10" bottom="10" left="10"/>
+                </padding>
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label fx:id="titleLabel" text="面试记录列表" styleClass="h3"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Button fx:id="backButton" text="返回" onAction="#handleBack" styleClass="btn,btn-default"/>
+                    <Button fx:id="recordButton" text="开始录音" onAction="#handleRecord" styleClass="btn,btn-primary"/>
+                </HBox>
+            </VBox>
+        </top>
+        
+        <center>
+            <TableView fx:id="recordsTableView">
+                <columns>
+                    <TableColumn fx:id="displayNameColumn" text="录音文件"/>
+                    <TableColumn fx:id="filePathColumn" text="录音地址"/>
+                    <TableColumn fx:id="operationColumn" text="操作"/>
+                </columns>
+            </TableView>
+        </center>
+        
+        <bottom>
+            <HBox spacing="10" alignment="CENTER_RIGHT">
+                <padding>
+                    <Insets top="10" right="10" bottom="10" left="10"/>
+                </padding>
+                <Label fx:id="statusLabel" text="就绪"/>
+            </HBox>
+        </bottom>
+    </BorderPane>
+</StackPane> 
