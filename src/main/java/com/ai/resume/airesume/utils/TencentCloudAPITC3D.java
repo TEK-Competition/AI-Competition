@@ -14,9 +14,9 @@ import javax.xml.bind.DatatypeConverter;
 public class TencentCloudAPITC3D {
     private final static Charset UTF8 = StandardCharsets.UTF_8;
     // 需要设置环境变量 TENCENTCLOUD_SECRET_ID，值为示例的 AKID********************************
-    private final static String SECRET_ID = "AKIDbNwKWWLwNdgZFhwxlV3OXTGtKahdMsBI";
+    private final static String SECRET_ID = "xxx";
     // 需要设置环境变量 TENCENTCLOUD_SECRET_KEY，值为示例的 ********************************
-    private final static String SECRET_KEY = "4vY5RakqmjcKrBKo6DCyWYOzNXVFl5C8";
+    private final static String SECRET_KEY = "xxx";
     private final static String CT_JSON = "application/json; charset=utf-8";
 
     public static byte[] hmac256(byte[] key, String msg) throws Exception {

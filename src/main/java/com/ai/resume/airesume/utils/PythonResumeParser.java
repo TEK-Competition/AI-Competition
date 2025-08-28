@@ -42,6 +42,9 @@ import java.util.TimeZone;
  */
 public class PythonResumeParser {
 
+    private static final String SECRET_ID= "xxx";
+    private static final String SECRET_KEY = "xxx";
+
     private static final String PYTHON_SCRIPT_NAME = "resume_parser.py";
     private static final String INSTALL_SCRIPT_NAME = "install_dependencies.py";
     private static final String INTERVIEW_ANALYZER_SCRIPT_NAME = "interview_analyzer.py";
@@ -568,9 +571,7 @@ public class PythonResumeParser {
         String region = "ap-guangzhou"; // 地域
         String action = "CreateRecTask"; // 接口名称
         String version = "2019-06-14"; // API版本
-        String secretId = "AKIDbNwKWWLwNdgZFhwxlV3OXTGtKahdMsBI";
-        String secretKey = "4vY5RakqmjcKrBKo6DCyWYOzNXVFl5C8";
-        
+
         // 获取当前UTC时间
         long timestamp = System.currentTimeMillis() / 1000;
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -617,7 +618,7 @@ public class PythonResumeParser {
         System.out.println("StringToSign:\n" + stringToSign);
         
         // ************* 步骤 3：计算签名 *************
-        byte[] secretDate = hmacSha256(("TC3" + secretKey).getBytes(StandardCharsets.UTF_8), date);
+        byte[] secretDate = hmacSha256(("TC3" + SECRET_KEY).getBytes(StandardCharsets.UTF_8), date);
         byte[] secretService = hmacSha256(secretDate, service);
         byte[] secretSigning = hmacSha256(secretService, "tc3_request");
         String signature = bytesToHex(hmacSha256(secretSigning, stringToSign)).toLowerCase();
@@ -626,7 +627,7 @@ public class PythonResumeParser {
         
         // ************* 步骤 4：拼接 Authorization *************
         String authorization = algorithm + " "
-                + "Credential=" + secretId + "/" + credentialScope + ", "
+                + "Credential=" + SECRET_ID + "/" + credentialScope + ", "
                 + "SignedHeaders=" + signedHeaders + ", "
                 + "Signature=" + signature;
         
@@ -692,9 +693,7 @@ public class PythonResumeParser {
         String region = "ap-guangzhou"; // 地域
         String action = "DescribeTaskStatus"; // 接口名称
         String version = "2019-06-14"; // API版本
-        String secretId = "AKIDbNwKWWLwNdgZFhwxlV3OXTGtKahdMsBI";
-        String secretKey = "4vY5RakqmjcKrBKo6DCyWYOzNXVFl5C8";
-        
+
         // 获取当前UTC时间
         long timestamp = System.currentTimeMillis() / 1000;
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -741,7 +740,7 @@ public class PythonResumeParser {
         System.out.println("StringToSign:\n" + stringToSign);
         
         // ************* 步骤 3：计算签名 *************
-        byte[] secretDate = hmacSha256(("TC3" + secretKey).getBytes(StandardCharsets.UTF_8), date);
+        byte[] secretDate = hmacSha256(("TC3" + SECRET_KEY).getBytes(StandardCharsets.UTF_8), date);
         byte[] secretService = hmacSha256(secretDate, service);
         byte[] secretSigning = hmacSha256(secretService, "tc3_request");
         String signature = bytesToHex(hmacSha256(secretSigning, stringToSign)).toLowerCase();
@@ -750,7 +749,7 @@ public class PythonResumeParser {
         
         // ************* 步骤 4：拼接 Authorization *************
         String authorization = algorithm + " "
-                + "Credential=" + secretId + "/" + credentialScope + ", "
+                + "Credential=" + SECRET_ID + "/" + credentialScope + ", "
                 + "SignedHeaders=" + signedHeaders + ", "
                 + "Signature=" + signature;
         
