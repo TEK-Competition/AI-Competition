@@ -8,7 +8,7 @@ from pathlib import Path
 from openai import OpenAI
 
 # MoonshotAI API密钥
-API_KEY = "sk-r16PKjOiiZrioa3XpiqCigW3hprjLlfbULcDmWLGxmNSoe9p"
+API_KEY = "xxx"
 
 def parse_resume(file_path):
     """

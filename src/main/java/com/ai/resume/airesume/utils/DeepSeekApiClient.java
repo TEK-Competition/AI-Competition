@@ -31,7 +31,7 @@ public class DeepSeekApiClient {
     
     // API配置
     private static final String API_URL = "https://api.deepseek.com/v1/chat/completions";
-    private static final String API_KEY = "sk-75fdecc18acf4edb8c6e3b52bde6cb5b"; // 使用提供的API密钥
+    private static final String API_KEY = "xxx"; // 使用提供的API密钥
     
     private final ObjectMapper objectMapper;
     

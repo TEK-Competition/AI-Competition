@@ -7,8 +7,8 @@ import os
 from pathlib import Path
 from openai import OpenAI
 
-# MoonshotAI API密钥
-API_KEY = "sk-r16PKjOiiZrioa3XpiqCigW3hprjLlfbULcDmWLGxmNSoe9p"
+# API密钥
+API_KEY = "xxx"
 
 def compare_resumes(resumes_json):
     """
