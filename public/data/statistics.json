@@ -1,0 +1,37 @@
+{
+  "globalEmployees": {
+    "description": "全球外包员工总数",
+    "value": 2847,
+    "unit": "人"
+  },
+  "activeCities": {
+    "description": "活跃外包城市数量",
+    "value": 24,
+    "unit": "个"
+  },
+  "avgEmployeesPerCity": {
+    "description": "平均每城市员工数",
+    "value": 119,
+    "unit": "人"
+  },
+  "topCityEmployees": {
+    "description": "最大外包城市员工数",
+    "value": 350,
+    "unit": "人"
+  },
+  "totalOperatingCost": {
+    "description": "年度总运营成本",
+    "value": 15680000,
+    "unit": "$"
+  },
+  "avgCostPerEmployee": {
+    "description": "平均员工年度成本",
+    "value": 55100,
+    "unit": "$"
+  },
+  "growthRate": {
+    "description": "年度员工增长率",
+    "value": 12.5,
+    "unit": "%"
+  }
+}

@@ -1,0 +1,40 @@
+html,
+body,
+#root {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+.rec-mode{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.port-label {
+    position: absolute;
+    color: #00ffe7; /* 使用更亮的青色 */
+    font-size: 15px; /* 再次增大字体 */
+    font-weight: 700; /* 使用更粗的字体 */
+    font-family: "Arial", "Helvetica", sans-serif;
+    pointer-events: none;
+    z-index: 10000;
+    text-shadow: 0 0 1px rgba(0, 0, 0, 1), 0 0 3px rgba(0, 0, 0, 0.8),
+        0 0 5px rgba(0, 255, 231, 0.3); /* 增强对比度的阴影 */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    /* 增加文字描边以提高可读性 */
+    -webkit-text-stroke: 0.5px rgba(0, 0, 0, 0.8);
+}
+#loading-bar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 4px;
+    background: #0ff;
+    width: 0;
+    z-index: 99999;
+    transition: width 0.3s, background 0.3s;
+}
