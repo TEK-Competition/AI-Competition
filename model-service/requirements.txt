@@ -1,0 +1,14 @@
+langchain
+langchain-core
+langchain_ollama
+langchain_openai
+langchain-milvus
+langchain-community
+langchain-text-splitters
+bs4
+fastapi
+uvicorn
+dashscope
+openai
+pydantic
+pymilvus

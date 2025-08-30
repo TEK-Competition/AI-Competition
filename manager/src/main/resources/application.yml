@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: code-looms
+  profiles:
+    active: ${PROFILES_ACTIVE}
+  main:
+    allow-bean-definition-overriding: true
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    default-property-inclusion: non_null
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
