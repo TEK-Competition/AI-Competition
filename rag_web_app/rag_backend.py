@@ -8,8 +8,9 @@ from mlx_lm import load, generate
 
 model = SentenceTransformer('BAAI/bge-small-zh', local_files_only=True)  # 或者换为 'BAAI/bge-small-zh'
 #model = SentenceTransformer('BAAI/bge-m3', local_files_only=True)
-local_path = "/Users/junli/.cache/huggingface/hub/models--Qwen--Qwen3-4B-MLX-4bit" \
-"/snapshots/96690e1ccfeefd2b6405e6516e964771ade49e3a" 
+#local_path = "/Users/junli/.cache/huggingface/hub/models--Qwen--Qwen3-4B-MLX-4bit" \
+#"/snapshots/96690e1ccfeefd2b6405e6516e964771ade49e3a" 
+local_path = "Qwen/Qwen3-4B-MLX-4bit"
 llm_model,tokenizer = load(
         path_or_hf_repo=local_path
     )
@@ -38,13 +39,13 @@ def generate_prompt(question, knowledge):
     """
     return prompt
 
-def generate_response(model, tokenizer, prompt):
+def generate_response(model, tokenizer, prompt, en_think):
     if tokenizer.chat_template is not None:
         messages=[{"role":"user", "content":prompt}]
         prompt = tokenizer.apply_chat_template(
             messages,
             add_generation_prompt=True,
-            enable_thinking=False
+            enable_thinking=en_think
         )
     response = generate(
         model,
@@ -108,15 +109,15 @@ def chat():
             print(f"[{i+1}] {text}")
         '''
         prompt = generate_prompt(question=user_input,knowledge=top_k_texts)
-        
-        response = generate_response(model=llm_model,tokenizer=tokenizer,prompt=prompt)
-        
+        en_think = False if mode=='normal' else True
+        response = generate_response(model=llm_model,tokenizer=tokenizer,prompt=prompt,en_think=en_think)
+        '''
         if mode=='normal':
             if '<think>' in response and '</think>' in response \
                 and response.find('<think>')<response.find('</think>'):
                 start = response.find('</think>')+len('</think>')
                 response = response[start:]
-
+        '''
         return jsonify({"reply": response})
     else:
         return jsonify({"reply":''})
