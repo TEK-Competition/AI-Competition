@@ -68,6 +68,6 @@ public class EntityType {
         public static final Integer FINISH = 6;
 
         public static final List<Integer> stages = CollectionUtil.list(false,
-                TABLE_RELATION, TABLE_FIELD, CONVERSION, EXEGESIS, FINISH);
+                READY, TABLE_RELATION, TABLE_FIELD, CONVERSION, EXEGESIS, FINISH);
     }
 }

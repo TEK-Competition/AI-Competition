@@ -5,6 +5,7 @@
 package org.geniusSociety.codelooms.component;
 
 
+import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.text.StrBuilder;
 import cn.hutool.core.thread.ThreadUtil;
@@ -36,12 +37,17 @@ import java.util.stream.Collectors;
 @Slf4j
 public class TaskWorker implements Runnable {
 
+    // 任务ID
     private final Long taskId;
+    // 项目ID
     private final Long itemId;
+    // 项目名称
+    private final String itemName;
+    // 用户ID
     private final Integer userId;
+    // 表字段
     private final Map<Long, List<MateTableField>> tableFieldMap = new HashMap<>();
-
-
+    // spring上下文
     private final ApplicationContext context;
 
     private final CvTaskStageRepository taskStageRepository;
@@ -53,12 +59,12 @@ public class TaskWorker implements Runnable {
 
     public TaskWorker(final CvTask task, ApplicationContext context) {
         this.context = context;
-
         this.taskStageRepository = context.getBean(CvTaskStageRepository.class);
         this.itemFileRepository = context.getBean(CvItemFileRepository.class);
         this.feignClient = context.getBean(CodeloomsFeignClient.class);
         this.taskId = task.getId();
         this.itemId = task.getItemId();
+        this.itemName = task.getName();
         this.userId = task.getUserId();
         files = itemFileRepository.findAll((root, q, cb) ->
                 cb.and(cb.equal(root.get("itemId"), itemId)));
@@ -73,7 +79,7 @@ public class TaskWorker implements Runnable {
         task.setStatus(EntityType.TaskStaus.RUNNING);
         task.setStartTime(new Date());
         taskRepository.save(task);
-
+        // 任务阶段
         final Map<Integer, CvTaskStage> stages = taskStageRepository.findAll((root, q, cb) ->
                         cb.and(cb.equal(root.get("taskId"), task.getId()))).stream()
                 .collect(Collectors.toMap(CvTaskStage::getStage, Function.identity()));
@@ -81,7 +87,10 @@ public class TaskWorker implements Runnable {
             for (Integer stage : EntityType.TaskStage.stages) {
                 CvTaskStage step = stages.get(stage);
                 if (!EntityType.TaskStaus.FINISH.equals(step.getStatus())) {
-                    if (EntityType.TaskStage.TABLE_RELATION.equals(stage)) {
+                    if (EntityType.TaskStage.READY.equals(stage)) {
+                        // 知识库加载
+                        this.loadKnowledge();
+                    } else if (EntityType.TaskStage.TABLE_RELATION.equals(stage)) {
                         // 表关系任务
                         this.execute(step, this.relation());
                         this.generateRelation();
@@ -209,6 +218,11 @@ public class TaskWorker implements Runnable {
         return arr.toString();
     }
 
+    /**
+     * 字段处理
+     *
+     * @return
+     */
     private Consumer<CvItemFile> field() {
         final CvTableRepository tableRepository = this.context.getBean(CvTableRepository.class);
         final CvTableFieldRepository tableFieldRepository = this.context.getBean(CvTableFieldRepository.class);
@@ -235,6 +249,9 @@ public class TaskWorker implements Runnable {
         };
     }
 
+    /**
+     * 表信息生成
+     */
     private void generateMeta() {
         final CvTableRepository tableRepository = this.context.getBean(CvTableRepository.class);
         final CvTableFieldRepository tableFieldRepository = this.context.getBean(CvTableFieldRepository.class);
@@ -266,6 +283,11 @@ public class TaskWorker implements Runnable {
         }
     }
 
+    /**
+     * SQL转换
+     *
+     * @return
+     */
     private Consumer<CvItemFile> conversion() {
         return f -> {
             ThreadUtil.safeSleep(1000);
@@ -282,6 +304,11 @@ public class TaskWorker implements Runnable {
         };
     }
 
+    /**
+     * 字段注释
+     *
+     * @return
+     */
     private Consumer<CvItemFile> exegesis() {
         return file -> {
             ThreadUtil.safeSleep(1000);
@@ -298,8 +325,8 @@ public class TaskWorker implements Runnable {
                         dbMateTableFields.forEach(tableField -> {
                             builder.append(tableField.getName()).append("(").append(tableField.getDataType()).append("),");
                         });
-                        ExegesisQuestionDTO question = ExegesisQuestionDTO.builder().id(this.taskId).tableName(optional.get().getName())
-                                .fields(builder.toString()).build();
+                        ExegesisQuestionDTO question = ExegesisQuestionDTO.builder().id(this.taskId).name(optional.get().getName())
+                                .list(builder.toString()).build();
                         log.info(question.toString());
                         AnswerDTO answer = feignClient.exegesis(question);
                         log.info(answer.getData());
@@ -319,5 +346,20 @@ public class TaskWorker implements Runnable {
                 });
             }
         };
+    }
+
+    /**
+     * 知识库加载
+     */
+    private void loadKnowledge() {
+        final CvItemKnowledgeRepository itemKnowledgeRepository = this.context.getBean(CvItemKnowledgeRepository.class);
+        List<String> knowledges = itemKnowledgeRepository.findAll((root, q, cb) ->
+                        cb.and(cb.equal(root.get("itemId"), this.itemId), cb.equal(root.get("isDel"), BaseConstant.NO))).stream()
+                .map(CvItemKnowledge::getPath).toList();
+        if (CollectionUtil.isNotEmpty(knowledges)) {
+            ExegesisQuestionDTO question = ExegesisQuestionDTO.builder().id(this.taskId).name(itemName)
+                    .list(CollectionUtil.join(knowledges, ",")).build();
+            feignClient.knowledge(question);
+        }
     }
 }

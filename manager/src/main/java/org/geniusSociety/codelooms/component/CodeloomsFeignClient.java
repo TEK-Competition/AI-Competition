@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 @FeignClient(value = "model-service", url = "${config.model-service}")
 public interface CodeloomsFeignClient {
 
+
     /**
      * 转换接口
      *
@@ -73,4 +74,13 @@ public interface CodeloomsFeignClient {
      */
     @PostMapping(value = "exegesis/answer")
     AnswerDTO exegesis(@RequestBody ExegesisQuestionDTO sp);
+
+    /**
+     * 添加知识库
+     *
+     * @param sp
+     * @return
+     */
+    @PostMapping(value = "exegesis/knowledge")
+    void knowledge(@RequestBody ExegesisQuestionDTO sp);
 }

@@ -57,8 +57,10 @@ public class TaskManager {
                 .status(EntityType.TaskStaus.NEW).steps(EntityType.TaskStaus.NEW).userId(item.getUserId()).build();
         task = taskRepository.save(task);
         for (Integer stage : EntityType.TaskStage.stages) {
-            taskStageRepository.save(CvTaskStage.builder().taskId(task.getId()).stage(stage).status(EntityType.TaskStage.READY)
-                    .userId(task.getUserId()).build());
+            if (!EntityType.TaskStage.READY.equals(stage)) {
+                taskStageRepository.save(CvTaskStage.builder().taskId(task.getId()).stage(stage).status(EntityType.TaskStage.READY)
+                        .userId(task.getUserId()).build());
+            }
         }
         this.execute(task);
     }

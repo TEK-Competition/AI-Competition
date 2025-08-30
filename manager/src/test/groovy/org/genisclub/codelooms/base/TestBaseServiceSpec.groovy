@@ -10,20 +10,6 @@ import spock.lang.Specification
 import javax.persistence.criteria.*
 
 class TestBaseServiceSpec extends Specification {
-
-    // 创建一个具体的实现类用于测试
-    class TestService extends BaseService<TestVO, TestDO> {
-        @Override
-        protected JpaSpecificationExecutor<TestDO> getRepository() {
-            return repository
-        }
-
-        @Override
-        protected BaseMapper<TestVO, TestDO> getMapper() {
-            return mapper
-        }
-    }
-
     @Mock
     JpaSpecificationExecutor<TestDO> repository
 

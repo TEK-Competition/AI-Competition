@@ -19,6 +19,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ExegesisQuestionDTO {
     private Long id;
-    private String tableName;
-    private String fields;
+    private String name;
+    private String list;
 }

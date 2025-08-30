@@ -63,10 +63,12 @@ public class FileManagerService {
                 .saveMode(file.getSaveMode()).parent(Long.valueOf(BaseConstant.BASE_ID)).userId(userId).build();
         record = fileRepository.save(record);
         final Long id = record.getId();
-        fileRepository.saveAll(file.getFiles().stream().map(f ->
-                CvFile.builder().parent(id).name(f.getFileName()).path(f.getFilePath())
-                        .type(f.getFileType()).saveMode(f.getSaveMode()).userId(userId).build()
-        ).toList());
+        if (CollectionUtil.isNotEmpty(file.getFiles())) {
+            fileRepository.saveAll(file.getFiles().stream().map(f ->
+                    CvFile.builder().parent(id).name(f.getFileName()).path(f.getFilePath())
+                            .type(f.getFileType()).saveMode(f.getSaveMode()).userId(userId).build()
+            ).toList());
+        }
         return FileVO.builder().id(record.getId()).name(record.getName()).build();
     }
 

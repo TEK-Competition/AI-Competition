@@ -15,5 +15,5 @@ class Request(BaseModel):
 
 class ExegesisRequest(BaseModel):
     id: int
-    tableName: str
-    fields: str
+    name: str
+    list: str

@@ -12,3 +12,5 @@ dashscope
 openai
 pydantic
 pymilvus
+pypdf
+unstructured[all-docs]
