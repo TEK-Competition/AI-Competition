@@ -26,9 +26,10 @@ public class MateTable extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     protected Long id;
+    // 项目ID
     @Column(name = "item_id")
     private Long itemId;
-
+    //项目名
     @Column(name = "name", length = 128)
     private String name;
     // 用户ID

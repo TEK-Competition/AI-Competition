@@ -25,9 +25,10 @@ public class CvTable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     protected Long id;
+    // 任务ID
     @Column(name = "task_id")
     private Long taskId;
-
+    // 名称
     @Column(name = "name", length = 128)
     private String name;
     // 用户ID

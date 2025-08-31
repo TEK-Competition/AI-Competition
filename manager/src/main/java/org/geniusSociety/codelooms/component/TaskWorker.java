@@ -266,6 +266,7 @@ public class TaskWorker implements Runnable {
             Map<String, CvTableField> map = metaMap.computeIfAbsent(table.getName(), k -> new HashMap<>());
             map.putIfAbsent(field.getName(), field);
         }
+        // 保存元数据
         final MateTableRepository tableDao = this.context.getBean(MateTableRepository.class);
         final MateTableFieldRepository tableFieldDao = this.context.getBean(MateTableFieldRepository.class);
         for (Map.Entry<String, Map<String, CvTableField>> entry : metaMap.entrySet()) {

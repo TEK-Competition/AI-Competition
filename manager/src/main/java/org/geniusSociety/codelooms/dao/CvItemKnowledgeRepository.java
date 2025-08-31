@@ -10,7 +10,7 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
 /**
- * 项目文件
+ * 知识库
  *
  * @author Cealus Li
  * @date 2025/7/9

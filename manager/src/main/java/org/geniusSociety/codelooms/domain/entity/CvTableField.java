@@ -27,13 +27,13 @@ public class CvTableField {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
-
+    // 表ID
     @Column(name = "table_id", nullable = false)
     private Long tableId;
-
+    // 名称
     @Column(name = "name", length = 128)
     private String name;
-
+    // 数据类型
     @Column(name = "data_type", length = 32)
     private String dataType;
     // 用户ID

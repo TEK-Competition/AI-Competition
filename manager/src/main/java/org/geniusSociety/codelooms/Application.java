@@ -9,7 +9,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  * code looms manager application
  *
  * @author Cealus
- * @version 0.0.2
+ * @version 1.0.0
  * @date 2025/7/5
  */
 @SpringBootApplication

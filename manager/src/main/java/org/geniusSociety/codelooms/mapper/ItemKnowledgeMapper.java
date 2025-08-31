@@ -10,7 +10,7 @@ import org.geniusSociety.codelooms.domain.vo.FileVO;
 import org.mapstruct.Mapper;
 
 /**
- * 实体转换
+ * 知识库实体转换
  *
  * @author Cealus Li
  * @date 2025/7/28

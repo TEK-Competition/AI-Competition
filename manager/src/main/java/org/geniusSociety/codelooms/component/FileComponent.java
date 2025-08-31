@@ -11,8 +11,8 @@ import cn.hutool.core.text.StrBuilder;
 import cn.hutool.core.util.IdUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.geniusSociety.codelooms.common.constant.EntityType;
-import org.geniusSociety.codelooms.domain.dto.FileDTO;
 import org.geniusSociety.codelooms.common.util.DecompressUtil;
+import org.geniusSociety.codelooms.domain.dto.FileDTO;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
@@ -39,6 +39,14 @@ public class FileComponent {
 
     private static final Snowflake snowflake = IdUtil.getSnowflake(1, 1);
 
+    /**
+     * 保存文件
+     *
+     * @param srcfile
+     * @param userId
+     * @return
+     * @throws IOException
+     */
     public FileDTO save(final MultipartFile srcfile, final Integer userId) throws IOException {
         final InputStream in = srcfile.getInputStream();
         final String fileType = FileUtil.getSuffix(srcfile.getOriginalFilename()).toLowerCase();
@@ -75,6 +83,12 @@ public class FileComponent {
         return record;
     }
 
+    /**
+     * 删除文件
+     *
+     * @param filePath
+     * @param saveMode
+     */
     public void remove(final String filePath, String saveMode) {
         FileUtil.del(filePath);
     }

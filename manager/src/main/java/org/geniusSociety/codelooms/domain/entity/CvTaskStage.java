@@ -29,19 +29,19 @@ public class CvTaskStage {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
-
+    // 任务ID
     @Column(name = "task_id", nullable = false)
     private Long taskId;
-
+    // 状态
     @Column(name = "status")
     private Integer status;
-
+    // 阶段
     @Column(name = "stage")
     private Integer stage;
-
+    // 开始时间
     @Column(name = "start_time")
     private Date startTime;
-
+    // 介绍时间
     @Column(name = "finish_time")
     private Date finishTime;
     // 用户ID

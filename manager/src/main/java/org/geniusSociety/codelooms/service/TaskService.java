@@ -72,6 +72,7 @@ public class TaskService extends BaseService<TaskVO, CvTask> {
             if (taskOptional.isPresent()) {
                 CvTask task = taskOptional.get();
                 if (null != fileId) {
+                    // 重置文件任务
                     Optional<CvItemFile> optional = itemFileRepository.findById(fileId);
                     if (optional.isPresent()) {
                         CvItemFile file = optional.get();
@@ -86,6 +87,7 @@ public class TaskService extends BaseService<TaskVO, CvTask> {
                         itemFileRepository.save(file);
                     }
                 } else if (null != stage) {
+                    //重置阶段任务
                     Optional<CvTaskStage> optional = taskStageRepository.findOne((root, q, cb) ->
                             cb.and(cb.equal(root.get("taskId"), task.getId()), cb.equal(root.get("stage"), stage)));
                     if (optional.isPresent()) {
@@ -96,6 +98,7 @@ public class TaskService extends BaseService<TaskVO, CvTask> {
                         taskStageRepository.save(s);
                     }
                 } else {
+                    //全部重置
                     List<CvTaskStage> stages = taskStageRepository.findAll((root, q, cb) ->
                             cb.equal(root.get("taskId"), task.getId()));
                     stages.forEach(s -> s.setStatus(EntityType.TaskStaus.NEW));

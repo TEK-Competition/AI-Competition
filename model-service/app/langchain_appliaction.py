@@ -3,7 +3,7 @@
 """
 @author: cealus
 @time: 2025/06/15
-@description: load langchain
+@description: load LLM application
 """
 from langchain_ollama import OllamaLLM
 from openai import OpenAI

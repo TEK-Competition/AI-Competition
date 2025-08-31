@@ -32,10 +32,20 @@ public abstract class BaseController {
         return response;
     }
 
+    /**
+     * 获取用户
+     *
+     * @return
+     */
     protected UserDTO getUser() {
         return (UserDTO) this.request.getSession().getAttribute(BaseConstant.SESSION_USER_KEY);
     }
 
+    /**
+     * 获取用户ID
+     *
+     * @return
+     */
     protected Integer getUserId() {
         UserDTO user = (UserDTO) this.request.getSession().getAttribute(BaseConstant.SESSION_USER_KEY);
         if (null != user) {

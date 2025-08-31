@@ -24,6 +24,12 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class GlobalValidationHandler {
 
+    /**
+     * 参数验证
+     *
+     * @param e
+     * @return
+     */
     @ExceptionHandler(value = AssertException.class)
     public BaseResult AssertExceptionHandler(final AssertException e) {
         log.error(e.getMessage(), e);

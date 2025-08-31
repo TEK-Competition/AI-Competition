@@ -11,6 +11,12 @@ import org.geniusSociety.codelooms.common.exception.AssertException;
  */
 public class AssertUtil {
 
+    /**
+     * 判断为 False
+     *
+     * @param expression
+     * @param message
+     */
     public static void isFalse(boolean expression, String... message) {
         if (expression) {
             throw new ValidationException(StrUtil.concat(true, message));
@@ -23,6 +29,12 @@ public class AssertUtil {
         }
     }
 
+    /**
+     * 判断为 Ture
+     *
+     * @param expression
+     * @param message
+     */
     public static void isTrue(boolean expression, String... message) {
         if (!expression) {
             throw new ValidationException(StrUtil.concat(true, message));
@@ -35,6 +47,12 @@ public class AssertUtil {
         }
     }
 
+    /**
+     * 全部为 Ture
+     *
+     * @param expressions
+     * @param message
+     */
     public static void isAllTrue(String message, boolean... expressions) {
         for (boolean expression : expressions) {
             if (!expression) {
@@ -51,6 +69,12 @@ public class AssertUtil {
         }
     }
 
+    /**
+     * 存在 Ture
+     *
+     * @param expressions
+     * @param message
+     */
     public static void isAnyTrue(String message, int code, boolean... expressions) {
         for (boolean expression : expressions) {
             if (expression) {
@@ -59,6 +83,12 @@ public class AssertUtil {
         }
     }
 
+    /**
+     * 非空
+     *
+     * @param obj
+     * @param message
+     */
     public static void notNull(Object obj, String... message) {
         isNotNull(obj, message);
     }
@@ -79,6 +109,12 @@ public class AssertUtil {
         }
     }
 
+    /**
+     * 为空
+     *
+     * @param obj
+     * @param message
+     */
     public static void isNull(Object obj, String... message) {
         if (null != obj) {
             throw new ValidationException(StrUtil.concat(true, message));
@@ -91,6 +127,11 @@ public class AssertUtil {
         }
     }
 
+    /**
+     * 错误信息
+     *
+     * @param message
+     */
     public static void throwMessage(String... message) {
         throw new ValidationException(StrUtil.concat(true, message));
     }

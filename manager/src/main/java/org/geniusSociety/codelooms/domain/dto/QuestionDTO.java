@@ -11,6 +11,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
+ * 存储过程转换
+ *
  * @author Cealus Li 2025/8/4
  */
 @Data
@@ -18,6 +20,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class QuestionDTO {
+    // 项目ID
     private Long id;
+    // 存储过程
     private String sp;
 }

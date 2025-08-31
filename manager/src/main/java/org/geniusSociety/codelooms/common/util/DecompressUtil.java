@@ -18,6 +18,14 @@ import java.util.List;
  */
 public class DecompressUtil {
 
+    /**
+     * 解压 tar.gz
+     *
+     * @param inputFile
+     * @param outputDir
+     * @return
+     * @throws IOException
+     */
     public static List<File> decompressTarGz(File inputFile, String outputDir) throws IOException {
         final List<File> files = new ArrayList<>();
         try (InputStream fi = new FileInputStream(inputFile);
@@ -46,10 +54,25 @@ public class DecompressUtil {
         return files;
     }
 
+    /**
+     * 解压TGZ
+     *
+     * @param inputFile
+     * @param outputDir
+     * @return
+     * @throws IOException
+     */
     public static List<File> decompressTgz(File inputFile, String outputDir) throws IOException {
         return decompressTarGz(inputFile, outputDir);
     }
 
+    /**
+     * 解压zip
+     *
+     * @param inputFile
+     * @param outputDir
+     * @return
+     */
     public static List<File> decompressZip(File inputFile, String outputDir) {
         ZipUtil.unzip(inputFile, FileUtil.file(outputDir));
         return FileUtil.loopFiles(outputDir);

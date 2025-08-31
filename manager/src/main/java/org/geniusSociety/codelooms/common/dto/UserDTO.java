@@ -21,7 +21,16 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UserDTO {
 
+    /**
+     * 用户ID
+     */
     private Integer id;
+    /**
+     * 用户名称
+     */
     private String name;
+    /**
+     * 用户角色
+     */
     private Integer roleId;
 }

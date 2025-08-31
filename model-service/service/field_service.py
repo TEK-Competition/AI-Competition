@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 _*-
 """
-@author:
-@time:
-@description: get field
+@author: cealus
+@time: 2025/07/22
+@description: get sp field
 """
 from fastapi import APIRouter
 

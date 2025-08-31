@@ -33,6 +33,13 @@ public abstract class BaseService<VO, DO extends BaseEntity> implements IService
 
     protected abstract BaseMapper<VO, DO> getMapper();
 
+    /**
+     * 获取详情
+     *
+     * @param id
+     * @param userId
+     * @return
+     */
     @Override
     public VO detail(final Long id, final Integer userId) {
         Optional<DO> optional = this.getRepository().findOne((root, query, cb) ->
@@ -40,6 +47,12 @@ public abstract class BaseService<VO, DO extends BaseEntity> implements IService
         return this.detail(optional.orElse(null));
     }
 
+    /**
+     * 实体转换
+     *
+     * @param record
+     * @return
+     */
     protected VO detail(DO record) {
         return this.detail(record, this.getMapper().domainToVo(record));
     }
@@ -48,17 +61,31 @@ public abstract class BaseService<VO, DO extends BaseEntity> implements IService
         return vo;
     }
 
-
+    /**
+     * 获取列表
+     *
+     * @param query
+     * @param userId
+     * @return
+     */
     @Override
     public List<VO> list(BaseQuery query, Integer userId) {
         List<DO> list = this.getRepository().findAll(this.spec(query, userId));
         return this.findAll(list);
     }
 
+
     protected List<VO> findAll(List<DO> list) {
         return list.stream().map(record -> this.getMapper().domainToVo(record)).toList();
     }
 
+    /**
+     * 分页查询
+     *
+     * @param query
+     * @param userId
+     * @return
+     */
     @Override
     public PageDTO<VO> query(PageQuery query, Integer userId) {
         Page<DO> page = this.getRepository().findAll(this.spec(query, userId),
@@ -71,6 +98,13 @@ public abstract class BaseService<VO, DO extends BaseEntity> implements IService
                 page.getTotalElements(), page.getSize());
     }
 
+    /**
+     * 查询条件
+     *
+     * @param query
+     * @param userId
+     * @return
+     */
     protected Specification<DO> spec(BaseQuery query, Integer userId) {
         return (root, q, cb) -> {
             Predicate user = cb.equal(root.get("userId"), userId);
@@ -87,6 +121,12 @@ public abstract class BaseService<VO, DO extends BaseEntity> implements IService
 
     }
 
+    /**
+     * 判断用户
+     *
+     * @param recordUserId
+     * @param userId
+     */
     public void assertUser(Integer recordUserId, Integer userId) {
         AssertUtil.isTrue((Objects.equals(recordUserId, userId)),
                 ErrorCode.REQUEST_NOT_FOUND.getCode(), ErrorCode.REQUEST_NOT_FOUND.getDesc());

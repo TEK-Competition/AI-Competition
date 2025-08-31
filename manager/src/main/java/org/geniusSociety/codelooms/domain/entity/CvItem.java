@@ -14,7 +14,6 @@ import org.geniusSociety.codelooms.common.entity.BaseEntity;
  * @author Cealus Li
  * @date 2025/7/9
  */
-
 @Getter
 @Setter
 @Builder

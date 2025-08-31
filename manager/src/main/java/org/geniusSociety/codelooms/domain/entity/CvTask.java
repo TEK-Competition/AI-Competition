@@ -28,25 +28,25 @@ public class CvTask extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
-
+    // 项目ID
     @Column(name = "item_id", nullable = false)
     private Long itemId;
     //项目名
     @Column(name = "name", nullable = false, length = 64)
     private String name;
-
+    // 运行类型
     @Column(name = "type")
     private Integer type;
-
+    // 状态
     @Column(name = "status")
     private Integer status;
-
+    // 阶段
     @Column(name = "steps")
     private Integer steps;
-
+    // 开始时间
     @Column(name = "start_time")
     private Date startTime;
-
+    // 介绍时间
     @Column(name = "finish_time")
     private Date finishTime;
     // 用户ID

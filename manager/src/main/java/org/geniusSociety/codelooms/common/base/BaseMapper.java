@@ -12,5 +12,11 @@ package org.geniusSociety.codelooms.common.base;
  */
 public interface BaseMapper<VO, BO> {
 
+    /**
+     * 实体转换
+     *
+     * @param record
+     * @return
+     */
     VO domainToVo(BO record);
 }

@@ -3,7 +3,7 @@
 """
 @author: cealus
 @time: 2025/07/2
-@description: code conversion
+@description: code conversion request
 """
 from fastapi import APIRouter
 
@@ -19,7 +19,7 @@ class ConversionService(object):
             如INSERT INTO tar_table(tar_field1,tar_field2) SELECT src_field1,src_field2 FROM src_table的语句,
             转换后为WITH tar_table AS (SELECT src_field1 AS tar_field1,src_field2 AS tar_field2 FROM src_table);
             UPDATE tar_table set tar_field1=src_field1,tar_field2=src_field2 FROM tar_table,src_table的语句,
-            转换后为WITH tar_table AS (SELECT *,tar_field1 AS src_field1,tar_field2 AS src_field2 FROM tar_table,src_table);
+            转换后为WITH tar_table AS (SELECT tar_field1 AS src_field1,tar_field2 AS src_field2 FROM tar_table,src_table);
             DELETE语句转换为查询语句,where条件取反,如DELETE FROM table where date='2025' and status=0 的语句,
             转换后为WITH table AS (SELECT * FROM table where not (date='2025' and status=0));
             其中已知CONVERT(numeric,field)转换为double(field);ltrim(rtrim(field))转换为trim(field);
@@ -40,7 +40,7 @@ conversionService = ConversionService()
 
 router = APIRouter(
     prefix='/conversion',
-    tags=['Stored procedures conversion']
+    tags=['stored procedures conversion']
 )
 
 

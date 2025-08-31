@@ -26,16 +26,16 @@ public class MateTableField extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
-
+    //表ID
     @Column(name = "table_id", nullable = false)
     private Long tableId;
-
+    //名称
     @Column(name = "name", length = 128)
     private String name;
-
+    //字段类型
     @Column(name = "data_type", length = 32)
     private String dataType;
-
+    //描述
     @Column(name = "description", length = 1024)
     private String description;
     // 用户ID

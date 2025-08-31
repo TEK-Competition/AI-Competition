@@ -31,11 +31,11 @@ public class TaskVO {
     private Long itemId;
     @Schema(name = "名称")
     private String name;
-    @Schema(name = "运行模式")
+    @Schema(name = "运行模式", example = "1", description = "1：自动；2：手动")
     private Integer type;
     @Schema(name = "状态")
     private Integer status;
-    @Schema(name = "步骤")
+    @Schema(name = "步骤", description = "1： 初始化；2：表关系任务；3：表字段任务；4：转换任务；5：注释任务；6：完成")
     private Integer steps;
     @Schema(name = "阶段状态")
     private List<TaskStageVO> stages;

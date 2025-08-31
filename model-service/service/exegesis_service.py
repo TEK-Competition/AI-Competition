@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 _*-
 """
-@author:
-@time:
-@description: knowledge service
+@author: cealus
+@time: 2025/08/2
+@description: field exegesis service
 """
 import warnings
 
