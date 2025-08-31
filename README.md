@@ -1,15 +1,43 @@
 # AI-Competition
+# <img src="https://github.com/TEK-Competition/AI-Competition/raw/feature/GeniusSociety-GZ-codelooms/assets/Wisdom.png" alt="image" style="width: 32px;"> The code loom plan
 
- - 所有参赛作品知识产权归公司所有，需符合隐私保护法规， 确保符合信息安全； 
- - 开发周期位6月到8月，截止日前按规定上传代码到指定的repo中，以个人或者团队名字命名，后面跟上location缩写和作品名称，比如: feature/YourName-SH-ProjectName 
- - 不限开发语言和平台，IOS/安卓/WEB端任选一端，后端语言不限，数据库关系型/NoSQL自选； 
- - 开发工具必须选用开源IDE以及开源框架或者社区版工具，数据库以及DB工具也只能选用开源或者社区版, AI工具也请选用开源免费的AI框架； 
-- 开发中期7月的两周会有一个中期成果展示会，邀请参赛队来进行中期展示，可线上拨入；只需展示进度即可，不需要展示成品或能运行的代码; 每个地区会有一位DL的Owner，去检查每个地区的进度 
- - 单元测试代码可选，有完整的单元测试代码为加分项 
- - 参赛项目必须围绕竞赛主题，且具有一定的创新性、实用性和可行性。 
- - 参赛者需独立完成项目开发，不得抄袭或盗用他人成果。如有发现，将取消参赛资格。 
- - 展示环节需要先展示需求文档或链接，先展示文档里所设计的功能，再演示作品是否实现 
- - 在竞赛过程中，各团队应遵守公司的各项规章制度，确保项目开发过程的安全和合规。 
- - 参赛团队不得使用客户电脑，只能用自己电脑来参赛。代码中不能有任何的客户信息。不能复制粘贴任何的客户现有代码。尽量不要在客户的办公室或者客户的网络里上传代码。 
- - 所有代码将上传到公司共享盘上存档 
- - 在最后展示环节，如果报名的团队所在城市有我们能线下举办展示环节的办公室，可以邀请团队来办公室线下一起参与；如果是临近城市的，可以支持报销高铁票等。如果是报名城市太远无法线下的团队，我们也支持线上拨入 
+> &nbsp;&nbsp;&nbsp;&nbsp; A comprehensive solution for converting traditional database stored procedures to SparkSQL using Large Language Models (LLM). This project enables automated conversion, extracts table and column metadata, generates relationship diagrams, and enhances field documentation through knowledge base integration.
+
+# Overview
+&nbsp;&nbsp;&nbsp;&nbsp; This platform provides an end-to-end solution for migrating stored procedures from various database systems to SparkSQL. The system consists of three main components:
+This platform provides an end-to-end solution for migrating stored procedures from various database systems to SparkSQL. The system consists of three main components:
+- Client: Interactive web interface
+
+- Manager: Management and administration services
+
+- model-service: LLM-powered conversion engine
+
+# Features
+- 🔄 Stored Procedure Conversion: Transform procedures from multiple database systems to SparkSQL
+
+- 📊 Metadata Extraction: Analyze and extract table/column dependencies and relationships
+
+- 🔍 Visualization: Generate interactive table relationship and procedure call graphs
+
+- 📝 Smart Documentation: Enhance field comments using knowledge base integration
+
+- 🧩 Extensible Architecture: Support for multiple database types and Spark versions
+
+# Quick Start
+Prerequisites
+- Java 17
+
+- Node.js 22
+
+- Python 3.12
+
+# Usage
+- Connect Data Source: Configure database connections through web interface
+
+- Upload Procedures: Select or upload stored procedure files
+
+- Configure Conversion: Set target Spark version and conversion parameters
+
+- Execute Conversion: Monitor real-time conversion progress
+
+- Review Results: Examine converted SparkSQL code and relationship diagrams
