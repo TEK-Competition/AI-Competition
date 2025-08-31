@@ -1,0 +1,36 @@
+
+
+[project]
+name = "AI-project"
+dynamic = ["version"]
+description = ""
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+keywords = ["mcp", "ollama", "bridge", "proxy", "api", "fastapi", "ai", "tools", "llm", "model-context-protocol", "local-llm", "ollama-api", "ollama-mcp"]
+authors = []
+dependencies = [
+    "fastapi>=0.115.13",
+    "httpx>=0.28.1",
+    "loguru>=0.7.3",
+    "mcp>=1.9.4",
+    "packaging>=23.0",
+    "typer>=0.16.0",
+    "uvicorn>=0.34.3",
+]
+
+
+[tool.hatch.build.hooks.vcs]
+version-file = "src/ollama_mcp_bridge/_version.py"
+
+[project.scripts]
+ollama-mcp-bridge = "ollama_mcp_bridge.main:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/ollama_mcp_bridge"]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.4.1",
+    "requests>=2.32.4",
+]

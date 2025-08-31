@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "EmployeePerformance": {
+      "command": "python",
+      "args": [
+        "./employee-mcp-server/main.py"
+      ],
+      "env": {
+        "MCP_LOG_LEVEL": "DEBUG",
+        "OLLAMA_URL": "http://localhost:11434"
+      }
+    }
+  }
+}

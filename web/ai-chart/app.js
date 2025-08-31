@@ -112,7 +112,7 @@
 
   async function send() {
     const apiBase = apiBaseEl ? apiBaseEl.value.trim().replace(/\/$/, '') : (params.get('apiBase') || 'http://localhost:8000');
-    const model = modelEl ? modelEl.value.trim() : (params.get('model') || 'llama3.1');
+    const model = modelEl ? modelEl.value.trim() : (params.get('model') || 'qwen3:8b');
     const empName = nameEl ? nameEl.value.trim() : (params.get('name') || '');
     const userText = (promptEl?.value.trim()) || (params.get('q') || params.get('prompt')) || '请根据以上绩效表给出优势、需优化能力、不足与改进建议。';
 
