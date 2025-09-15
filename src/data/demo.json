@@ -1,133 +1,133 @@
 [
 	{
-		"from": { "country": "China", "latitude": 31.2304, "longitude": 121.4737, "location": "Shanghai" },
-		"to": { "country": "United States", "latitude": 34.0522, "longitude": -118.2437, "location": "Los Angeles" },
+		"from": { "country": "中国", "latitude": 31.2304, "longitude": 121.4737, "location": "上海" },
+		"to": { "country": "美国", "latitude": 34.0522, "longitude": -118.2437, "location": "洛杉矶" },
 		"date": "2025-01-15",
 		"quantity": 1200,
 		"tags": { "mode": "sea", "cargo": "electronics" }
 	},
 	{
-		"from": { "country": "China", "latitude": 22.5431, "longitude": 114.0579, "location": "Shenzhen" },
-		"to": { "country": "Netherlands", "latitude": 51.9244, "longitude": 4.4777, "location": "Rotterdam" },
+		"from": { "country": "中国", "latitude": 22.5431, "longitude": 114.0579, "location": "深圳" },
+		"to": { "country": "荷兰", "latitude": 51.9244, "longitude": 4.4777, "location": "鹿特丹" },
 		"date": "2025-02-03",
 		"quantity": 800,
 		"tags": { "mode": "sea", "cargo": "furniture" }
 	},
 	{
-		"from": { "country": "China", "latitude": 36.0822, "longitude": 120.3695, "location": "Qingdao" },
-		"to": { "country": "Singapore", "latitude": 1.3521, "longitude": 103.8198, "location": "Singapore" },
+		"from": { "country": "中国", "latitude": 36.0822, "longitude": 120.3695, "location": "青岛" },
+		"to": { "country": "新加坡", "latitude": 1.3521, "longitude": 103.8198, "location": "新加坡" },
 		"date": "2025-03-20",
 		"quantity": 450,
 		"tags": { "mode": "sea", "cargo": "textiles" }
 	},
 	{
-		"from": { "country": "China", "latitude": 23.1291, "longitude": 113.2644, "location": "Guangzhou" },
-		"to": { "country": "Germany", "latitude": 53.5511, "longitude": 9.9937, "location": "Hamburg" },
+		"from": { "country": "中国", "latitude": 23.1291, "longitude": 113.2644, "location": "广州" },
+		"to": { "country": "德国", "latitude": 53.5511, "longitude": 9.9937, "location": "汉堡" },
 		"date": "2025-04-08",
 		"quantity": 950,
 		"tags": { "mode": "air", "cargo": "auto-parts" }
 	},
 	{
-		"from": { "country": "China", "latitude": 39.3434, "longitude": 117.3616, "location": "Tianjin" },
-		"to": { "country": "United States", "latitude": 40.7128, "longitude": -74.0060, "location": "New York" },
+		"from": { "country": "中国", "latitude": 39.3434, "longitude": 117.3616, "location": "天津" },
+		"to": { "country": "美国", "latitude": 40.7128, "longitude": -74.0060, "location": "纽约" },
 		"date": "2025-05-01",
 		"quantity": 1800,
 		"tags": { "mode": "sea", "cargo": "machinery" }
 	},
 	{
-		"from": { "country": "China", "latitude": 29.8683, "longitude": 121.5440, "location": "Ningbo" },
-		"to": { "country": "Australia", "latitude": -33.8688, "longitude": 151.2093, "location": "Sydney" },
+		"from": { "country": "中国", "latitude": 29.8683, "longitude": 121.5440, "location": "宁波" },
+		"to": { "country": "澳大利亚", "latitude": -33.8688, "longitude": 151.2093, "location": "悉尼" },
 		"date": "2025-06-12",
 		"quantity": 300,
 		"tags": { "mode": "sea", "cargo": "agri-products" }
 	},
 	{
-		"from": { "country": "China", "latitude": 38.9140, "longitude": 121.6147, "location": "Dalian" },
-		"to": { "country": "United Arab Emirates", "latitude": 25.2048, "longitude": 55.2708, "location": "Dubai" },
+		"from": { "country": "中国", "latitude": 38.9140, "longitude": 121.6147, "location": "大连" },
+		"to": { "country": "阿拉伯联合酋长国", "latitude": 25.2048, "longitude": 55.2708, "location": "迪拜" },
 		"date": "2025-07-07",
 		"quantity": 620,
 		"tags": { "mode": "sea", "cargo": "chemicals" }
 	},
 	{
-		"from": { "country": "China", "latitude": 24.4798, "longitude": 118.0895, "location": "Xiamen" },
-		"to": { "country": "Kenya", "latitude": -4.0435, "longitude": 39.6682, "location": "Mombasa" },
+		"from": { "country": "中国", "latitude": 24.4798, "longitude": 118.0895, "location": "厦门" },
+		"to": { "country": "肯尼亚", "latitude": -4.0435, "longitude": 39.6682, "location": "蒙巴萨" },
 		"date": "2025-08-18",
 		"quantity": 210,
 		"tags": { "mode": "sea", "cargo": "building-materials" }
 	},
 	{
-		"from": { "country": "China", "latitude": 30.5728, "longitude": 104.0668, "location": "Chengdu" },
-		"to": { "country": "Japan", "latitude": 35.6895, "longitude": 139.6917, "location": "Tokyo" },
+		"from": { "country": "中国", "latitude": 30.5728, "longitude": 104.0668, "location": "成都" },
+		"to": { "country": "日本", "latitude": 35.6895, "longitude": 139.6917, "location": "东京" },
 		"date": "2025-09-02",
 		"quantity": 75,
 		"tags": { "mode": "air", "cargo": "medical-supplies" }
 	},
 	{
-		"from": { "country": "China", "latitude": 43.8256, "longitude": 125.3235, "location": "Changchun" },
-		"to": { "country": "Russia", "latitude": 55.7558, "longitude": 37.6173, "location": "Moscow" },
+		"from": { "country": "中国", "latitude": 43.8256, "longitude": 125.3235, "location": "长春" },
+		"to": { "country": "俄罗斯", "latitude": 55.7558, "longitude": 37.6173, "location": "莫斯科" },
 		"date": "2025-10-14",
 		"quantity": 420,
 		"tags": { "mode": "rail", "cargo": "electronics" }
 	},
 	{
-		"from": { "country": "United States", "latitude": 37.7749, "longitude": -122.4194, "location": "San Francisco" },
-		"to": { "country": "China", "latitude": 31.2304, "longitude": 121.4737, "location": "Shanghai" },
+		"from": { "country": "美国", "latitude": 37.7749, "longitude": -122.4194, "location": "旧金山" },
+				"to": { "country": "中国", "latitude": 31.2304, "longitude": 121.4737, "location": "上海" },
 		"date": "2025-11-20",
 		"quantity": 2300,
 		"tags": { "mode": "air", "cargo": "semiconductors" }
 	},
 	{
-		"from": { "country": "India", "latitude": 19.0760, "longitude": 72.8777, "location": "Mumbai" },
-		"to": { "country": "United Kingdom", "latitude": 51.5074, "longitude": -0.1278, "location": "London" },
+		"from": { "country": "印度", "latitude": 19.0760, "longitude": 72.8777, "location": "孟买" },
+		"to": { "country": "英国", "latitude": 51.5074, "longitude": -0.1278, "location": "伦敦" },
 		"date": "2025-12-05",
 		"quantity": 540,
 		"tags": { "mode": "sea", "cargo": "textiles" }
 	},
 	{
-		"from": { "country": "Australia", "latitude": -37.8136, "longitude": 144.9631, "location": "Melbourne" },
-		"to": { "country": "New Zealand", "latitude": -36.8485, "longitude": 174.7633, "location": "Auckland" },
+		"from": { "country": "澳大利亚", "latitude": -37.8136, "longitude": 144.9631, "location": "墨尔本" },
+		"to": { "country": "新西兰", "latitude": -36.8485, "longitude": 174.7633, "location": "奥克兰" },
 		"date": "2026-01-10",
 		"quantity": 95,
 		"tags": { "mode": "sea", "cargo": "dairy" }
 	},
 	{
-		"from": { "country": "Brazil", "latitude": -23.5505, "longitude": -46.6333, "location": "Sao Paulo" },
-		"to": { "country": "South Africa", "latitude": -33.9249, "longitude": 18.4241, "location": "Cape Town" },
+		"from": { "country": "巴西", "latitude": -23.5505, "longitude": -46.6333, "location": "圣保罗" },
+		"to": { "country": "南非", "latitude": -33.9249, "longitude": 18.4241, "location": "开普敦" },
 		"date": "2026-02-22",
 		"quantity": 310,
 		"tags": { "mode": "sea", "cargo": "coffee" }
 	},
 	{
-		"from": { "country": "Canada", "latitude": 43.6532, "longitude": -79.3832, "location": "Toronto" },
-		"to": { "country": "Mexico", "latitude": 19.4326, "longitude": -99.1332, "location": "Mexico City" },
+		"from": { "country": "加拿大", "latitude": 43.6532, "longitude": -79.3832, "location": "多伦多" },
+		"to": { "country": "墨西哥", "latitude": 19.4326, "longitude": -99.1332, "location": "墨西哥城" },
 		"date": "2026-03-11",
 		"quantity": 150,
 		"tags": { "mode": "air", "cargo": "perishables" }
 	},
 	{
-		"from": { "country": "Germany", "latitude": 52.5200, "longitude": 13.4050, "location": "Berlin" },
-		"to": { "country": "France", "latitude": 48.8566, "longitude": 2.3522, "location": "Paris" },
+		"from": { "country": "德国", "latitude": 52.5200, "longitude": 13.4050, "location": "柏林" },
+		"to": { "country": "法国", "latitude": 48.8566, "longitude": 2.3522, "location": "巴黎" },
 		"date": "2026-04-18",
 		"quantity": 60,
 		"tags": { "mode": "road", "cargo": "automotive" }
 	},
 	{
-		"from": { "country": "Italy", "latitude": 45.4642, "longitude": 9.1900, "location": "Milan" },
-		"to": { "country": "Spain", "latitude": 40.4168, "longitude": -3.7038, "location": "Madrid" },
+		"from": { "country": "意大利", "latitude": 45.4642, "longitude": 9.1900, "location": "米兰" },
+		"to": { "country": "西班牙", "latitude": 40.4168, "longitude": -3.7038, "location": "马德里" },
 		"date": "2026-05-30",
 		"quantity": 85,
 		"tags": { "mode": "road", "cargo": "fashion" }
 	},
 	{
-		"from": { "country": "China", "latitude": 39.9042, "longitude": 116.4074, "location": "Beijing" },
-		"to": { "country": "Singapore", "latitude": 1.3521, "longitude": 103.8198, "location": "Singapore" },
+		"from": { "country": "中国", "latitude": 39.9042, "longitude": 116.4074, "location": "北京" },
+		"to": { "country": "新加坡", "latitude": 1.3521, "longitude": 103.8198, "location": "新加坡" },
 		"date": "2026-06-15",
 		"quantity": 4000,
 		"tags": { "mode": "air", "cargo": "electronics", "priority": "high" }
 	},
 	{
-		"from": { "country": "China", "latitude": 30.5928, "longitude": 114.3055, "location": "Wuhan" },
-		"to": { "country": "United States", "latitude": 41.8781, "longitude": -87.6298, "location": "Chicago" },
+		"from": { "country": "中国", "latitude": 30.5928, "longitude": 114.3055, "location": "武汉" },
+		"to": { "country": "美国", "latitude": 41.8781, "longitude": -87.6298, "location": "芝加哥" },
 		"date": "2026-07-21",
 		"quantity": 275,
 		"tags": { "mode": "rail", "cargo": "heavy-equipment" }

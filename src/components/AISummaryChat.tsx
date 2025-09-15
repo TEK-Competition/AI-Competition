@@ -29,7 +29,7 @@ const Container = styled.div.withConfig({
     position: absolute;
     top: 15px;
     left: 15px;
-    max-width: ${props => props.isExpanded ? '15%' : '0'};
+    max-width: ${props => props.isExpanded ? '30%' : '0'};
     max-height: ${props => props.isExpanded ? '70%' : '0'};
     width: ${props => props.isExpanded ? 'auto' : '0'};
     height: ${props => props.isExpanded ? 'auto' : '0'};
@@ -217,10 +217,10 @@ const AISummaryChat: React.FC<AISummaryChatProps> = ({ isExpanded }) => {
         <Container isExpanded={isExpanded}>
             <Header>
                 {aiLoading
-                    ? "Thinking..."
+                    ? "AI总结中..."
                     : aiLoaded
-                    ? `Summary for ${currentYear}`
-                    : "AI Summary Failed"}
+                    ? `AI分析${currentYear}数据总结`
+                    : "AI总结失败"}
             </Header>
             <ContentWrapper ref={containerRef}>
                 {!aiLoading && aiLoaded && !aiError ? (

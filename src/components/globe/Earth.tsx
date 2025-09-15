@@ -45,6 +45,7 @@ export const GlobeEarth = (props: {
     const refGlobe = useRef<GlobeInstance | null>(null);
 
     const currentYear = useAppSelector((state) => state.year.currentYear);
+    const currentViewMode = useAppSelector((state) => state.view.mode);
 
     const earthData = useAppSelector((state) => state.loader.data?.earthData);
     const selectedLocations = useAppSelector((state) => state.ports.selectedLocations);
@@ -98,8 +99,29 @@ export const GlobeEarth = (props: {
         });
 
         const labelsData = Object.values(map);
-        setLabels(globe, labelsData);
+        
+        // 根据视图模式决定显示什么
+        switch (currentViewMode) {
+            case 'points':
+                // 只显示点图（标签），不显示连线
+                setLabels(globe, labelsData);
+                globe.arcsData([]);
+                break;
+            case 'arcs':
+                // 显示点和连线（从出发地飞向目的地的线）
+                setLabels(globe, labelsData);
+                setArcsData(globe, filteredItems);
+                break;
+            case 'all':
+            default:
+                // 显示所有（点图 + 连线）
+                setLabels(globe, labelsData);
+                setArcsData(globe, filteredItems);
+                break;
+        }
+    };
 
+    const setArcsData = (globe: GlobeInstance, filteredItems: any[]) => {
         // --- build arcs data from filteredItems ---
         // skip items without valid from/to coords
         const validArcs = filteredItems.filter((it) => it.from && it.to && it.from.latitude != null && it.from.longitude != null && it.to.latitude != null && it.to.longitude != null);
@@ -191,7 +213,7 @@ export const GlobeEarth = (props: {
 
     useEffect(() => {
         setGlobe();
-    }, [earthData, currentYear, selectedLocations]);
+    }, [earthData, currentYear, selectedLocations, currentViewMode]);
 
     useEffect(() => {
         if (refGlobe.current && refContainer.current) {

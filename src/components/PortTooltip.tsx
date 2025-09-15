@@ -44,11 +44,11 @@ const PortTooltip: React.FC<LocationQuantityInfo> = (props: LocationQuantityInfo
     return (
         <TooltipContainer intensity={intensity} glowColor={'#00ffe7'}>
             <InfoRow>
-                <Label color="#00ffe7">Location: </Label>
+                <Label color="#00ffe7">位置: </Label>
                 <Value>{props.location}</Value>
             </InfoRow>
             <InfoRow>
-                <Label color="#ff8c00">Quantity: </Label>
+                <Label color="#ff8c00">数量: </Label>
                 <Value>{count}</Value>
             </InfoRow>
         </TooltipContainer>

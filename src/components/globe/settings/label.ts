@@ -8,52 +8,105 @@ import { greatCircleDistance } from './material';
 export const setLabels = (globe: GlobeInstance, earthData: LocationQuantityInfo[]) => {
     const { labels, labelAltitudes } = convertLabelData(earthData);
 
+    // 使用HTML元素替代文本标签，以更好地支持中文
     globe
-        .labelsData(labels)
-        .labelLat((obj: object) => {
+        .htmlElementsData(labels)
+        .htmlLat((obj: object) => {
             const it = obj as LocationQuantityInfo;
             return it.latitude;
         })
-        .labelLng((obj: object) => {
+        .htmlLng((obj: object) => {
             const it = obj as LocationQuantityInfo;
             return it.longitude;
         })
-        .labelText((obj: object) => {
+        .htmlElement((obj: object) => {
             const it = obj as LocationQuantityInfo;
-            return `${it.location}\n(${it.quantity})`;
+            const el = document.createElement('div');
+            
+            // 创建点标记
+            const dot = document.createElement('div');
+            const dotRadius = Math.max(3, Math.min(8, Math.sqrt(Math.max(it.quantity, 0)) * 0.5));
+            dot.style.width = dotRadius * 2 + 'px';
+            dot.style.height = dotRadius * 2 + 'px';
+            dot.style.backgroundColor = '#00ffe7';
+            dot.style.borderRadius = '50%';
+            dot.style.margin = '0 auto 5px auto';
+            dot.style.boxShadow = '0 0 5px rgba(0, 255, 231, 0.5)';
+            
+            // 创建文本标签
+            const label = document.createElement('div');
+            label.innerHTML = `${it.location}<br/>(${it.quantity})`;
+            label.style.color = '#00ffe7';
+            label.style.fontFamily = '"PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", "Arial", "Helvetica", sans-serif';
+            label.style.fontSize = Math.max(10, Math.min(16, Math.sqrt(Math.max(it.quantity, 0)) * 0.5)) + 'px';
+            label.style.fontWeight = '700';
+            label.style.textAlign = 'center';
+            label.style.textShadow = '0 0 1px rgba(0, 0, 0, 1), 0 0 3px rgba(0, 0, 0, 0.8), 0 0 5px rgba(0, 255, 231, 0.3)';
+            label.style.webkitTextStroke = '0.5px rgba(0, 0, 0, 0.8)';
+            label.style.whiteSpace = 'nowrap';
+            
+            el.appendChild(dot);
+            el.appendChild(label);
+            el.style.pointerEvents = 'auto'; // 启用鼠标事件以支持tooltip
+            el.style.userSelect = 'none';
+            el.style.display = 'flex';
+            el.style.flexDirection = 'column';
+            el.style.alignItems = 'center';
+            el.style.cursor = 'pointer'; // 添加鼠标指针样式
+            
+            // 添加tooltip功能
+            let tooltipDiv: HTMLDivElement | null = null;
+            let updatePosition: ((event: MouseEvent) => void) | null = null;
+            
+            el.addEventListener('mouseenter', (e) => {
+                // 创建tooltip
+                tooltipDiv = document.createElement('div');
+                tooltipDiv.innerHTML = renderPortTooltip({
+                    location: it.location,
+                    latitude: it.latitude,
+                    longitude: it.longitude,
+                    quantity: it.quantity,
+                });
+                tooltipDiv.style.position = 'absolute';
+                tooltipDiv.style.pointerEvents = 'none';
+                tooltipDiv.style.zIndex = '10000';
+                tooltipDiv.style.transform = 'translate(10px, -50%)';
+                document.body.appendChild(tooltipDiv);
+                
+                // 更新tooltip位置
+                updatePosition = (event: MouseEvent) => {
+                    if (tooltipDiv) {
+                        tooltipDiv.style.left = event.clientX + 'px';
+                        tooltipDiv.style.top = event.clientY + 'px';
+                    }
+                };
+                
+                updatePosition(e as any);
+                el.addEventListener('mousemove', updatePosition);
+            });
+            
+            el.addEventListener('mouseleave', () => {
+                if (tooltipDiv) {
+                    document.body.removeChild(tooltipDiv);
+                    tooltipDiv = null;
+                }
+                if (updatePosition) {
+                    el.removeEventListener('mousemove', updatePosition);
+                    updatePosition = null;
+                }
+            });
+            
+            return el;
         })
-        // Label size based on quantity
-        .labelSize((obj: object) => {
-            const it = obj as LocationQuantityInfo;
-            return Math.max(0.8, Math.min(2.5, Math.sqrt(Math.max(it.quantity, 0)) * 0.08));
-        })
-        // Dot radius based on quantity
-        .labelDotRadius((obj: object) => {
-            const it = obj as LocationQuantityInfo;
-            const minRadius = 0.15;
-            const maxRadius = 0.8;
-            const scale = Math.sqrt(Math.max(it.quantity, 0)) * 0.025;
-            return Math.max(minRadius, Math.min(maxRadius, scale));
-        })
-        // Label color (use a single color for now)
-        .labelColor(() => '#00ffe7')
-        .labelResolution(8)
-        .labelAltitude((obj: object) => {
+        .htmlAltitude((obj: object) => {
             const it = obj as LocationQuantityInfo;
             return labelAltitudes[it.location] || 0;
         })
-        .labelDotOrientation('top')
-        .labelIncludeDot(true)
-        // Custom HTML label tooltip using styled component
-        .labelLabel((obj: object) => {
-            const it = obj as LocationQuantityInfo;
-            return renderPortTooltip({
-                location: it.location,
-                latitude: it.latitude,
-                longitude: it.longitude,
-                quantity: it.quantity,
-            });
-        })
+        .htmlTransitionDuration(0);
+
+    // 保留原来的标签系统作为备用（设置为空数据）
+    globe
+        .labelsData([])
         .labelsTransitionDuration(0);
 
     // --- BEGIN: Add vertical lines from earth surface to label dots ---

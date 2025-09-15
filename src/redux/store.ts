@@ -9,12 +9,22 @@ interface PortsState {
     selectedLocations: string[];
 }
 
+export type ViewMode = 'all' | 'points' | 'arcs';
+
+interface ViewState {
+    mode: ViewMode;
+}
+
 const yearInitialState: YearState = {
     currentYear: new Date().getFullYear(),
 };
 
 const portsInitialState: PortsState = {
     selectedLocations: [],
+};
+
+const viewInitialState: ViewState = {
+    mode: 'points', // 默认是点图
 };
 
 const yearSlice = createSlice({
@@ -32,10 +42,10 @@ const portsSlice = createSlice({
     initialState: portsInitialState,
     reducers: {
         togglePort: (state, action: PayloadAction<string>) => {
-            const port = action.payload;
-            const index = state.selectedLocations.indexOf(port);
+            const location = action.payload;
+            const index = state.selectedLocations.indexOf(location);
             if (index === -1) {
-                state.selectedLocations.push(port);
+                state.selectedLocations.push(location);
             } else {
                 state.selectedLocations.splice(index, 1);
             }
@@ -49,8 +59,15 @@ const portsSlice = createSlice({
     },
 });
 
-export const { setCurrentYear } = yearSlice.actions;
-export const { togglePort, selectAllPorts, clearSelectedPorts } = portsSlice.actions;
+const viewSlice = createSlice({
+    name: 'view',
+    initialState: viewInitialState,
+    reducers: {
+        setViewMode: (state, action: PayloadAction<ViewMode>) => {
+            state.mode = action.payload;
+        },
+    },
+});
 
 interface LoadingState<T> {
     loading?: boolean;
@@ -96,9 +113,6 @@ const loaderSlice = createSlice({
     },
 });
 
-const { loaderStart, loaderSuccess, loaderFail } = loaderSlice.actions;
-export { loaderStart, loaderSuccess, loaderFail };
-
 type AISummaryData = { content: string; week: number };
 type AISummaryState = LoadingState<Partial<AISummaryData>>;
 
@@ -124,6 +138,13 @@ const aiSummarySlice = createSlice({
     },
 });
 
+export const { setCurrentYear } = yearSlice.actions;
+export const { togglePort, selectAllPorts, clearSelectedPorts } = portsSlice.actions;
+export const { setViewMode } = viewSlice.actions;
+
+const { loaderStart, loaderSuccess, loaderFail } = loaderSlice.actions;
+export { loaderStart, loaderSuccess, loaderFail };
+
 const { aiSummarySuccess, aiSummaryStart, aiSummaryFail } = aiSummarySlice.actions;
 export { aiSummarySuccess, aiSummaryStart, aiSummaryFail };
 
@@ -131,6 +152,7 @@ export const store = configureStore({
     reducer: {
         year: yearSlice.reducer,
         ports: portsSlice.reducer,
+        view: viewSlice.reducer,
         loader: loaderSlice.reducer,
         aiSummary: aiSummarySlice.reducer,
     },

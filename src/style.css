@@ -6,6 +6,7 @@ body,
     margin: 0;
     padding: 0;
     overflow: hidden;
+    font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", "Arial", "Helvetica", sans-serif;
 }
 .rec-mode{
     display: flex;
@@ -17,7 +18,7 @@ body,
     color: #00ffe7; /* 使用更亮的青色 */
     font-size: 15px; /* 再次增大字体 */
     font-weight: 700; /* 使用更粗的字体 */
-    font-family: "Arial", "Helvetica", sans-serif;
+    font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", "Arial", "Helvetica", sans-serif;
     pointer-events: none;
     z-index: 10000;
     text-shadow: 0 0 1px rgba(0, 0, 0, 1), 0 0 3px rgba(0, 0, 0, 0.8),

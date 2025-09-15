@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef } from "react";
 import { useAppDispatch, useAppSelector } from "../redux/hook";
 import demoData from "../data/demo.json";
-import aiJSON from "../data/ai.json";
+import aiJSON from "../data/ai";
 import {
   loaderStart,
   loaderSuccess,

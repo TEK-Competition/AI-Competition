@@ -204,7 +204,7 @@ const PortsSidebar: React.FC<PortsSidebarProps> = ({
       {!isCollapsed && (
         <SidebarContainer>
           <SectionHeader>
-            <span>Filter Ports</span>
+            <span>筛选</span>
             <div style={{ display: "flex" }}>
               {selectedLocations.length > 0 && (
                 <IconButton icon="ban" onClick={handleClearAll} />
@@ -222,7 +222,7 @@ const PortsSidebar: React.FC<PortsSidebarProps> = ({
           </SectionHeader>
           <MainContent>
             <PortsBox>
-              <h5>All Locations ({currentYear})</h5>
+              <h5>位置列表</h5>
               <PortsGrid>
                 {ports.map((port: string) => {
                   const summary = portsSummary.find((p) => p.city === port);
@@ -254,15 +254,15 @@ const PortsSidebar: React.FC<PortsSidebarProps> = ({
             
             {selectedPortsData.length > 0 && (
               <PortsBox>
-                <h5>Selected Locations Summary</h5>
+                <h5>已选位置摘要</h5>
                 <div style={{ 
                   padding: "10px", 
                   background: "rgba(77, 208, 225, 0.1)", 
                   borderRadius: "6px",
                   fontSize: "12px"
                 }}>
-                  <div>Total Selected: {selectedPortsData.length}</div>
-                  <div>Total Quantity: {selectedPortsData.reduce((sum, port) => sum + (port.totalQuantity || 0), 0)}</div>
+                  <div>已选数量: {selectedPortsData.length}</div>
+                  <div>总数量: {selectedPortsData.reduce((sum, port) => sum + (port.totalQuantity || 0), 0)}</div>
                   <div style={{ marginTop: "8px" }}>
                     {selectedPortsData
                       .sort((a, b) => b.totalQuantity - a.totalQuantity)
