@@ -13,3 +13,40 @@
  - 参赛团队不得使用客户电脑，只能用自己电脑来参赛。代码中不能有任何的客户信息。不能复制粘贴任何的客户现有代码。尽量不要在客户的办公室或者客户的网络里上传代码。 
  - 所有代码将上传到公司共享盘上存档 
  - 在最后展示环节，如果报名的团队所在城市有我们能线下举办展示环节的办公室，可以邀请团队来办公室线下一起参与；如果是临近城市的，可以支持报销高铁票等。如果是报名城市太远无法线下的团队，我们也支持线上拨入 
+
+
+## startup
+
+### ollama
+1. 下载ollama
+[官网](https://ollama.com/)
+下载并安装ollama,运行ollama，打开powershell
+```bash
+#pull qwen3:8b 模型
+ollama.exe pull qwen3:8b
+```
+
+### mcp 服务器
+1. 下载/克隆本项目
+2. 使用uv
+```bash
+# 同步项目依赖
+uv sync
+# 运行
+uvx ollama-mcp-bridge
+```
+
+### web 
+```bash
+# 进入web服务器根目录
+cd .\web\ai-chart\
+# 启动http server
+python -m http.server 8080
+```
+
+运行效果
+```bash
+(ai-competition) PS C:\Users\13533\VscodeProject\AI-Competition> cd .\web\ai-chart\
+(ai-competition) PS C:\Users\13533\VscodeProject\AI-Competition\web\ai-chart> python -m http.server 8080
+Serving HTTP on :: port 8080 (http://[::]:8080/) ...
+```
